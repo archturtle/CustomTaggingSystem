@@ -1,0 +1,364 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		67AD91FA26F2930700EACDBE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD91F926F2930700EACDBE /* AppDelegate.m */; };
+		67AD91FD26F2930700EACDBE /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD91FC26F2930700EACDBE /* MainViewController.m */; };
+		67AD91FF26F2930800EACDBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67AD91FE26F2930800EACDBE /* Assets.xcassets */; };
+		67AD920226F2930800EACDBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67AD920026F2930800EACDBE /* Main.storyboard */; };
+		67AD920526F2930800EACDBE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD920426F2930800EACDBE /* main.m */; };
+		67AD920F26F293EC00EACDBE /* NSString+ComparisonIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD920E26F293EC00EACDBE /* NSString+ComparisonIndex.m */; };
+		67AD921226F2942000EACDBE /* TagTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD921126F2942000EACDBE /* TagTextAttachment.m */; };
+		67AD921526F2944400EACDBE /* CountValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD921426F2944400EACDBE /* CountValueTransformer.m */; };
+		67AD921926F2947100EACDBE /* TagSuggestionWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD921726F2947100EACDBE /* TagSuggestionWindow.m */; };
+		67AD921A26F2947100EACDBE /* TagSuggestionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67AD921826F2947100EACDBE /* TagSuggestionWindow.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		67AD91F526F2930700EACDBE /* CustomTaggingSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomTaggingSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		67AD91F826F2930700EACDBE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		67AD91F926F2930700EACDBE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		67AD91FB26F2930700EACDBE /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		67AD91FC26F2930700EACDBE /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		67AD91FE26F2930800EACDBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		67AD920126F2930800EACDBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		67AD920326F2930800EACDBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		67AD920426F2930800EACDBE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		67AD920626F2930800EACDBE /* CustomTaggingSystem.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CustomTaggingSystem.entitlements; sourceTree = "<group>"; };
+		67AD920D26F293EC00EACDBE /* NSString+ComparisonIndex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ComparisonIndex.h"; sourceTree = "<group>"; };
+		67AD920E26F293EC00EACDBE /* NSString+ComparisonIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+ComparisonIndex.m"; sourceTree = "<group>"; };
+		67AD921026F2942000EACDBE /* TagTextAttachment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagTextAttachment.h; sourceTree = "<group>"; };
+		67AD921126F2942000EACDBE /* TagTextAttachment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagTextAttachment.m; sourceTree = "<group>"; };
+		67AD921326F2944400EACDBE /* CountValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountValueTransformer.h; sourceTree = "<group>"; };
+		67AD921426F2944400EACDBE /* CountValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountValueTransformer.m; sourceTree = "<group>"; };
+		67AD921626F2947100EACDBE /* TagSuggestionWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagSuggestionWindow.h; sourceTree = "<group>"; };
+		67AD921726F2947100EACDBE /* TagSuggestionWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagSuggestionWindow.m; sourceTree = "<group>"; };
+		67AD921826F2947100EACDBE /* TagSuggestionWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagSuggestionWindow.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		67AD91F226F2930700EACDBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		67AD91EC26F2930700EACDBE = {
+			isa = PBXGroup;
+			children = (
+				67AD91F726F2930700EACDBE /* CustomTaggingSystem */,
+				67AD91F626F2930700EACDBE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		67AD91F626F2930700EACDBE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				67AD91F526F2930700EACDBE /* CustomTaggingSystem.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		67AD91F726F2930700EACDBE /* CustomTaggingSystem */ = {
+			isa = PBXGroup;
+			children = (
+				67AD91F826F2930700EACDBE /* AppDelegate.h */,
+				67AD91F926F2930700EACDBE /* AppDelegate.m */,
+				67AD91FB26F2930700EACDBE /* MainViewController.h */,
+				67AD91FC26F2930700EACDBE /* MainViewController.m */,
+				67AD921626F2947100EACDBE /* TagSuggestionWindow.h */,
+				67AD921726F2947100EACDBE /* TagSuggestionWindow.m */,
+				67AD91FE26F2930800EACDBE /* Assets.xcassets */,
+				67AD920026F2930800EACDBE /* Main.storyboard */,
+				67AD921826F2947100EACDBE /* TagSuggestionWindow.xib */,
+				67AD920326F2930800EACDBE /* Info.plist */,
+				67AD920426F2930800EACDBE /* main.m */,
+				67AD920626F2930800EACDBE /* CustomTaggingSystem.entitlements */,
+				67AD921326F2944400EACDBE /* CountValueTransformer.h */,
+				67AD921426F2944400EACDBE /* CountValueTransformer.m */,
+				67AD921026F2942000EACDBE /* TagTextAttachment.h */,
+				67AD921126F2942000EACDBE /* TagTextAttachment.m */,
+				67AD920D26F293EC00EACDBE /* NSString+ComparisonIndex.h */,
+				67AD920E26F293EC00EACDBE /* NSString+ComparisonIndex.m */,
+			);
+			path = CustomTaggingSystem;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		67AD91F426F2930700EACDBE /* CustomTaggingSystem */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67AD920926F2930800EACDBE /* Build configuration list for PBXNativeTarget "CustomTaggingSystem" */;
+			buildPhases = (
+				67AD91F126F2930700EACDBE /* Sources */,
+				67AD91F226F2930700EACDBE /* Frameworks */,
+				67AD91F326F2930700EACDBE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CustomTaggingSystem;
+			productName = CustomTaggingSystem;
+			productReference = 67AD91F526F2930700EACDBE /* CustomTaggingSystem.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		67AD91ED26F2930700EACDBE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					67AD91F426F2930700EACDBE = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+				};
+			};
+			buildConfigurationList = 67AD91F026F2930700EACDBE /* Build configuration list for PBXProject "CustomTaggingSystem" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 67AD91EC26F2930700EACDBE;
+			productRefGroup = 67AD91F626F2930700EACDBE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				67AD91F426F2930700EACDBE /* CustomTaggingSystem */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		67AD91F326F2930700EACDBE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67AD91FF26F2930800EACDBE /* Assets.xcassets in Resources */,
+				67AD921A26F2947100EACDBE /* TagSuggestionWindow.xib in Resources */,
+				67AD920226F2930800EACDBE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		67AD91F126F2930700EACDBE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67AD921926F2947100EACDBE /* TagSuggestionWindow.m in Sources */,
+				67AD91FD26F2930700EACDBE /* MainViewController.m in Sources */,
+				67AD920526F2930800EACDBE /* main.m in Sources */,
+				67AD91FA26F2930700EACDBE /* AppDelegate.m in Sources */,
+				67AD921226F2942000EACDBE /* TagTextAttachment.m in Sources */,
+				67AD920F26F293EC00EACDBE /* NSString+ComparisonIndex.m in Sources */,
+				67AD921526F2944400EACDBE /* CountValueTransformer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		67AD920026F2930800EACDBE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				67AD920126F2930800EACDBE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		67AD920726F2930800EACDBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		67AD920826F2930800EACDBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		67AD920A26F2930800EACDBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CustomTaggingSystem/CustomTaggingSystem.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = C6K7WPTB42;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = CustomTaggingSystem/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.tortl.CustomTaggingSystem;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		67AD920B26F2930800EACDBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CustomTaggingSystem/CustomTaggingSystem.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = C6K7WPTB42;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = CustomTaggingSystem/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.tortl.CustomTaggingSystem;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		67AD91F026F2930700EACDBE /* Build configuration list for PBXProject "CustomTaggingSystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67AD920726F2930800EACDBE /* Debug */,
+				67AD920826F2930800EACDBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67AD920926F2930800EACDBE /* Build configuration list for PBXNativeTarget "CustomTaggingSystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67AD920A26F2930800EACDBE /* Debug */,
+				67AD920B26F2930800EACDBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 67AD91ED26F2930700EACDBE /* Project object */;
+}
