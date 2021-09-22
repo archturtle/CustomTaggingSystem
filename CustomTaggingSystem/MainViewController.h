@@ -11,6 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MainViewController : NSViewController <NSTextViewDelegate>
 
+/**
+ The binding to the text view that is used for input and tagging.
+ */
 @property (unsafe_unretained) IBOutlet NSTextView *textView;
 
 @end

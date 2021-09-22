@@ -12,20 +12,63 @@
 
 @interface MainViewController ()
 
+/**
+ The list of possible tags that can be shown inside the suggestions
+ window.
+ */
 @property NSMutableArray<NSDictionary *> * possibleTags;
 
-@property (readonly) NSArray<NSString *> * currentTags;
+/**
+ The list of tags that are currently inside the textView. Updates on
+ insertion and deletion of tags.
+ */
+@property (readonly) NSArray<NSDictionary *> * currentTags;
 
+/**
+ The suggestion window that will be used to display all of our
+ tag suggestions.
+ */
 @property TagSuggestionWindow * suggestionWindow;
 
+/**
+ The character that NSTextAttachments show up as when accessing the
+ string value of our textView.
+ */
 @property NSString * attachmentCharacter;
 
+/**
+ A boolean value that tells the program whether or not the suggestion
+ window should appear under the textView.
+ */
 @property bool stopSuggestions;
 
+/**
+ Updates the textView with the content of the currently selected tag in
+ the suggestions window.
+ */
 - (void)updateTextView;
 
+/**
+ Creates and inserts a tag into the textView by automatically finding the currently
+ selected tag.
+ */
 - (void)insertTag;
 
+/**
+ Creates and inserts a tag into the textView using manually specified data.
+ 
+ @param item The item from which the tag data should be taken from.
+ */
+- (void)insertTag:(NSDictionary *)item;
+
+/**
+ Cleans the textView string by removing attachment characters so
+ that only user-inputted text is left.
+ 
+ @param initial The value of the string propety in a textView.
+ 
+ @return The cleaned string without any attachment characters.
+ */
 - (NSString *)cleanTextViewString:(NSString *)initial;
 
 @end
@@ -67,14 +110,14 @@
 
 @synthesize currentTags = _currentTags;
 
-- (NSArray<NSString *> *)currentTags {
+- (NSArray<NSDictionary *> *)currentTags {
     NSMutableArray *list = [[NSMutableArray alloc] init];
     
     [self.textView.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textView.textStorage.length) options:NSAttributedStringEnumerationReverse usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
         if (value == nil) return;
         
         TagTextAttachment *tag = (TagTextAttachment *) value;
-        [list addObject:tag.name];
+        [list addObject:tag.info];
     }];
     
     return list;
@@ -86,9 +129,10 @@
 
 - (NSArray<NSDictionary *>*)getPossibleSuggestions:(NSString *)text {
     return [self.possibleTags filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-        NSString *tagName = (NSString *) [(NSDictionary *) evaluatedObject objectForKey:@"name"];
+        NSDictionary *tag = (NSDictionary *) evaluatedObject;
+        NSString *tagName = (NSString *) [tag objectForKey:@"name"];
         
-        return [tagName hasPrefix:text] && ![self.currentTags containsObject:tagName];
+        return [tagName hasPrefix:text] && ![self.currentTags containsObject:tag];
     }]];
 }
 
@@ -151,8 +195,7 @@
 }
 
 - (void)insertTag {
-    NSString *itemName;
-    NSColor *itemColor;
+    NSDictionary *item;
         
     if (!self.suggestionWindow.selectedSuggestion) {
         NSString *textViewString = [self cleanTextViewString:self.textView.textStorage.string];
@@ -169,18 +212,19 @@
                 @"color": NSColor.systemGrayColor
             };
                 
-            itemName = tagItem[@"name"];
-            itemColor = tagItem[@"color"];
+            item = tagItem;
             [self.possibleTags addObject:tagItem];
         } else {
-            itemName = results.firstObject[@"name"];
-            itemColor = results.firstObject[@"color"];
+            item = results.firstObject;
         }
     } else {
-        itemName = self.suggestionWindow.selectedSuggestion[@"name"];
-        itemColor = self.suggestionWindow.selectedSuggestion[@"color"];
+        item = self.suggestionWindow.selectedSuggestion;
     }
     
+    [self insertTag:item];
+}
+
+- (void)insertTag:(NSDictionary *)item {
     [self.textView.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textView.textStorage.length) options:NSAttributedStringEnumerationReverse usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
         if (value != nil) return;
         
@@ -188,7 +232,10 @@
         [self.textView delete:nil];
     }];
     
-    if ([self.currentTags containsObject:itemName]) return;
+    if ([self.currentTags containsObject:item]) return;
+    
+    NSString *itemName = [item valueForKey:@"name"];
+    NSColor *itemColor = [item valueForKey:@"color"];
     
     TagTextAttachment *attachment = [[TagTextAttachment alloc] init];
     NSSize textSize = [itemName sizeWithAttributes:@{
@@ -226,7 +273,7 @@
     [attachment setImage:tagImage];
     
     // Set tag name
-    [attachment setName:itemName];
+    [attachment setInfo:item];
     
     NSAttributedString *tag = [NSAttributedString attributedStringWithAttachment:attachment];
     

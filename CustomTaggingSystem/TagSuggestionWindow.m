@@ -9,8 +9,17 @@
 
 @interface TagSuggestionWindow ()
 
+/**
+ The focus observer which notifies the window that the user
+ has clicked out of it.
+ */
 @property id focusObserver;
 
+/**
+ Calculates the proper height for the suggestion window so that
+ it shoes all the suggestions. If the amount of suggestions passes
+ the number 8, a fixed height is used.
+ */
 - (void)calculateProperHeight;
 
 @end

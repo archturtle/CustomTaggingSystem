@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -710,16 +711,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="U2U-jf-6e6">
-                                <rect key="frame" x="163" y="208" width="154" height="32"/>
-                                <buttonCell key="cell" type="push" title="Show Current Tags" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="92g-Q2-RfT">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="listCurrentTags:" target="XfG-lQ-9wD" id="k9d-Gf-FGi"/>
-                                </connections>
-                            </button>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZe-wp-JsT">
                                 <rect key="frame" x="70" y="35" width="340" height="112"/>
                                 <clipView key="contentView" drawsBackground="NO" id="qN7-S1-HR5">
@@ -746,15 +737,25 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="U2U-jf-6e6">
+                                <rect key="frame" x="163" y="173" width="154" height="32"/>
+                                <buttonCell key="cell" type="push" title="Show Current Tags" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="92g-Q2-RfT">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="listCurrentTags:" target="XfG-lQ-9wD" id="k9d-Gf-FGi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="fZe-wp-JsT" firstAttribute="top" secondItem="U2U-jf-6e6" secondAttribute="bottom" constant="33" id="0I9-UR-Lae"/>
                             <constraint firstAttribute="bottom" secondItem="fZe-wp-JsT" secondAttribute="bottom" constant="35" id="8Ej-nn-k8b"/>
-                            <constraint firstItem="fZe-wp-JsT" firstAttribute="top" secondItem="U2U-jf-6e6" secondAttribute="bottom" constant="68" id="Gux-CY-5uK"/>
-                            <constraint firstItem="U2U-jf-6e6" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="170" id="Lt0-TP-GjI"/>
+                            <constraint firstItem="U2U-jf-6e6" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="70" id="9Wm-93-yfG"/>
+                            <constraint firstItem="U2U-jf-6e6" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="170" id="NRL-Kg-RR7"/>
                             <constraint firstItem="fZe-wp-JsT" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="70" id="THa-7t-boX"/>
-                            <constraint firstItem="U2U-jf-6e6" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="35" id="YOs-eU-HNd"/>
                             <constraint firstAttribute="trailing" secondItem="fZe-wp-JsT" secondAttribute="trailing" constant="70" id="kP3-wC-5zQ"/>
-                            <constraint firstAttribute="trailing" secondItem="U2U-jf-6e6" secondAttribute="trailing" constant="170" id="vCD-K0-9yy"/>
+                            <constraint firstAttribute="trailing" secondItem="U2U-jf-6e6" secondAttribute="trailing" constant="170" id="zfp-oq-Zfg"/>
                         </constraints>
                     </view>
                     <connections>
