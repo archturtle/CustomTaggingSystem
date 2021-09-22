@@ -22,7 +22,7 @@
  The list of tags that are currently inside the textView. Updates on
  insertion and deletion of tags.
  */
-@property (readonly) NSArray<NSDictionary *> * currentTags;
+@property (readonly) NSArray<NSString *> * currentTags;
 
 /**
  The suggestion window that will be used to display all of our
@@ -41,6 +41,11 @@
  window should appear under the textView.
  */
 @property bool stopSuggestions;
+
+/**
+ The path at which the save file for tags is located.
+ */
+@property NSString * saveFilePath;
 
 /**
  Updates the textView with the content of the currently selected tag in
@@ -106,18 +111,20 @@
     
     unichar character = 0xFFFC;
     self.attachmentCharacter = [NSString stringWithCharacters:&character length:1];
+    
+    self.saveFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"Tags.plist"];
 }
 
 @synthesize currentTags = _currentTags;
 
-- (NSArray<NSDictionary *> *)currentTags {
+- (NSArray<NSString *> *)currentTags {
     NSMutableArray *list = [[NSMutableArray alloc] init];
     
     [self.textView.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textView.textStorage.length) options:NSAttributedStringEnumerationReverse usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
         if (value == nil) return;
         
         TagTextAttachment *tag = (TagTextAttachment *) value;
-        [list addObject:tag.info];
+        [list addObject:tag.name];
     }];
     
     return list;
@@ -127,12 +134,29 @@
     NSLog(@"currentTags: %@", self.currentTags);
 }
 
+- (IBAction)saveTags:(id)sender {
+    NSDictionary *saveFileData = @{
+        @"Tags": [self currentTags]
+    };
+
+    [saveFileData writeToFile:self.saveFilePath atomically:YES];
+}
+
+- (IBAction)loadTags:(id)sender {
+    NSDictionary *saveFileData = [[NSDictionary alloc] initWithContentsOfFile:self.saveFilePath];
+    NSPredicate *filter = [NSPredicate predicateWithFormat:@"name IN %@", [saveFileData objectForKey:@"Tags"]];
+    NSArray<NSDictionary *> *savedTags = [self.possibleTags filteredArrayUsingPredicate:filter];
+
+    for (NSDictionary *item in savedTags) {
+        [self insertTag:item];
+    }
+}
+
 - (NSArray<NSDictionary *>*)getPossibleSuggestions:(NSString *)text {
     return [self.possibleTags filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-        NSDictionary *tag = (NSDictionary *) evaluatedObject;
-        NSString *tagName = (NSString *) [tag objectForKey:@"name"];
+        NSString *tagName = (NSString *) [((NSDictionary *) evaluatedObject) objectForKey:@"name"];
         
-        return [tagName hasPrefix:text] && ![self.currentTags containsObject:tag];
+        return [tagName hasPrefix:text] && ![self.currentTags containsObject:tagName];
     }]];
 }
 
@@ -232,10 +256,10 @@
         [self.textView delete:nil];
     }];
     
-    if ([self.currentTags containsObject:item]) return;
-    
     NSString *itemName = [item valueForKey:@"name"];
     NSColor *itemColor = [item valueForKey:@"color"];
+    
+    if ([self.currentTags containsObject:itemName]) return;
     
     TagTextAttachment *attachment = [[TagTextAttachment alloc] init];
     NSSize textSize = [itemName sizeWithAttributes:@{
@@ -273,7 +297,7 @@
     [attachment setImage:tagImage];
     
     // Set tag name
-    [attachment setInfo:item];
+    [attachment setName:itemName];
     
     NSAttributedString *tag = [NSAttributedString attributedStringWithAttachment:attachment];
     

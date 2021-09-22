@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TagTextAttachment : NSTextAttachment
 
 /**
- The information of the tag that the text attachment is representing.
+ The name of the tag that the text attachment is representing.
  */
-@property NSDictionary * info;
+@property NSString * name;
 
 @end
 

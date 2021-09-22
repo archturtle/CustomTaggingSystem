@@ -11,10 +11,10 @@ The tags are created using a `NSImage` that is created programatically and are s
 - Keyboard navigation of suggestions
 - Auto-creation if a tag does not exist
 - Auto-creation & auto-cancellation is focus is lost
-
-## Todo
 - Saving tags to a plist file
 - Restoring tags from a plist file
+
+## Todo
 - Right click menu on tags for live-editing
 - Drag-and-drop rearranging for tags (maybe?)
 
