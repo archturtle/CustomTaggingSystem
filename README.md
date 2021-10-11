@@ -3,7 +3,7 @@
 This project attempts to recreate the tagging system that is found in the MacOS Finder app. 
 
 ## How it Works
-The tags are created using a `NSImage` that is created programatically and are sized to the reciving text views font size. Once created, the `NSImage` are placed inside a sub-class of `NSTextAttachment` (called `TagTextAttachment`), which contains the extra property `name`. The extra property `name` is added to help filter the list of possible suggestions to prevent duplicates and to help maintain a list of current tags. Once the `TagTextAttachment` is created, it is then placed inside a `NSAttributedString` for insertion to the text view (`NSTextView` in this demo's case). Any text view/field that supports `NSAttributedString` can take advantage of these custom tags.
+The tags are created using a `NSImage` that is created programatically and are sized to the reciving text views font size. Once created, the `NSImage` are placed inside a sub-class of `NSTextAttachmentCall` (called `TagTextAttachmentCell`), which is used to capture mouse events of the tag. The `TagTextAttachmentCell` is then placed in custom `NSTextAttachment` (called `TagTextAttachment`) which contains the extra property `name`. The extra property `name` is added to help filter the list of possible suggestions to prevent duplicates and to help maintain a list of current tags. Once the `TagTextAttachment` is created, it is then placed inside a `NSAttributedString` for insertion to the text view (`NSTextView` in this demo's case). Any text view/field that supports `NSAttributedString` can take advantage of these custom tags.
 
 ## Features
 - Custom suggestion menu
