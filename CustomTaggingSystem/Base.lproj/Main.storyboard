@@ -717,7 +717,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="340" height="112"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="LzM-Nd-Y08">
+                                        <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" id="LzM-Nd-Y08" customClass="TagTextView">
                                             <rect key="frame" x="0.0" y="0.0" width="340" height="112"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -783,7 +783,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="textView" destination="LzM-Nd-Y08" id="sv0-o2-zev"/>
+                        <outlet property="textView" destination="LzM-Nd-Y08" id="Va0-bW-RfG"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

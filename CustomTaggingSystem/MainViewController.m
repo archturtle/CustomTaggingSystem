@@ -8,6 +8,7 @@
 #import "MainViewController.h"
 #import "TagSuggestionWindow.h"
 #import "TagTextAttachment.h"
+#import "TagTextAttachmentCell.h"
 #import "NSString+ComparisonIndex.h"
 
 @interface MainViewController ()
@@ -108,11 +109,15 @@
             
     [self.textView setDelegate:self];
     [self.textView setTextContainerInset:NSMakeSize(0, 5)];
+    [self.textView unregisterDraggedTypes];
     
     unichar character = 0xFFFC;
     self.attachmentCharacter = [NSString stringWithCharacters:&character length:1];
     
     self.saveFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"Tags.plist"];
+    
+    // Uncomment Load saved tags on app startup.
+//    [self loadTags:nil];
 }
 
 @synthesize currentTags = _currentTags;
@@ -120,7 +125,7 @@
 - (NSArray<NSString *> *)currentTags {
     NSMutableArray *list = [[NSMutableArray alloc] init];
     
-    [self.textView.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textView.textStorage.length) options:NSAttributedStringEnumerationReverse usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
+    [self.textView.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textView.textStorage.length) options:0 usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
         if (value == nil) return;
         
         TagTextAttachment *tag = (TagTextAttachment *) value;
@@ -144,11 +149,13 @@
 
 - (IBAction)loadTags:(id)sender {
     NSDictionary *saveFileData = [[NSDictionary alloc] initWithContentsOfFile:self.saveFilePath];
-    NSPredicate *filter = [NSPredicate predicateWithFormat:@"name IN %@", [saveFileData objectForKey:@"Tags"]];
-    NSArray<NSDictionary *> *savedTags = [self.possibleTags filteredArrayUsingPredicate:filter];
-
-    for (NSDictionary *item in savedTags) {
-        [self insertTag:item];
+    
+    for (NSString *name in [saveFileData objectForKey:@"Tags"]) {
+        NSPredicate *filter = [NSPredicate predicateWithFormat:@"name == %@", name];
+        NSArray<NSDictionary *> * tags = [self.possibleTags filteredArrayUsingPredicate:filter];
+        if (tags.count == 0) return;
+        
+        [self insertTag:tags.firstObject];
     }
 }
 
@@ -175,7 +182,6 @@
         self.stopSuggestions = NO;
         return [self.suggestionWindow cancelSuggestions];
     }
-                
     
     [self.suggestionWindow showSuggestions:[self getPossibleSuggestions:[self cleanTextViewString:self.textView.textStorage.string]] forView:self.textView];
 }
@@ -249,7 +255,7 @@
 }
 
 - (void)insertTag:(NSDictionary *)item {
-    [self.textView.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textView.textStorage.length) options:NSAttributedStringEnumerationReverse usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
+    [self.textView.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textView.textStorage.length) options:0 usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
         if (value != nil) return;
         
         [self.textView setSelectedRange:range];
@@ -262,6 +268,8 @@
     if ([self.currentTags containsObject:itemName]) return;
     
     TagTextAttachment *attachment = [[TagTextAttachment alloc] init];
+    TagTextAttachmentCell *attachmentCell = [[TagTextAttachmentCell alloc] init];
+    
     NSSize textSize = [itemName sizeWithAttributes:@{
         NSFontAttributeName: [NSFont systemFontOfSize:12]
     }];
@@ -291,10 +299,15 @@
     }];
         
     [tagImage unlockFocus];
-        
-    // Set bounds of attachment
-    [attachment setBounds:NSMakeRect(0, self.textView.font.descender - 2, tagImage.size.width, tagImage.size.height)];
-    [attachment setImage:tagImage];
+    
+    // Set attachmentCell content
+    [attachmentCell setImage:tagImage];
+    
+    // Set attachmentCell offset
+    [attachmentCell setVerticalOffset:self.textView.font.descender - 2];
+    
+    // Set attachment to attachmentCell
+    [attachment setAttachmentCell:attachmentCell];
     
     // Set tag name
     [attachment setName:itemName];

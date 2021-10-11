@@ -16,7 +16,6 @@ The tags are created using a `NSImage` that is created programatically and are s
 
 ## Todo
 - Right click menu on tags for live-editing
-- Drag-and-drop rearranging for tags (maybe?)
 
 ## Contributions
 Contributions to this project are allowed. However, if the contribution is major, please open an issue to discuss your intended changes.

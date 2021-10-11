@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67200BAC26FCE4DC00D2F1E7 /* TagTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 67200BAB26FCE4DC00D2F1E7 /* TagTextView.m */; };
 		67AD91FA26F2930700EACDBE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD91F926F2930700EACDBE /* AppDelegate.m */; };
 		67AD91FD26F2930700EACDBE /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD91FC26F2930700EACDBE /* MainViewController.m */; };
 		67AD91FF26F2930800EACDBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67AD91FE26F2930800EACDBE /* Assets.xcassets */; };
@@ -17,9 +18,15 @@
 		67AD921526F2944400EACDBE /* CountValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD921426F2944400EACDBE /* CountValueTransformer.m */; };
 		67AD921926F2947100EACDBE /* TagSuggestionWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD921726F2947100EACDBE /* TagSuggestionWindow.m */; };
 		67AD921A26F2947100EACDBE /* TagSuggestionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67AD921826F2947100EACDBE /* TagSuggestionWindow.xib */; };
+		67DC6B4E2713B8800059E63A /* TagTextAttachmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 67DC6B4D2713B8800059E63A /* TagTextAttachmentCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		67200BAA26FCE4DC00D2F1E7 /* TagTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagTextView.h; sourceTree = "<group>"; };
+		67200BAB26FCE4DC00D2F1E7 /* TagTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagTextView.m; sourceTree = "<group>"; };
+		674587FA27026BF400B15B7D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		674587FB27026BF400B15B7D /* doc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = doc; sourceTree = "<group>"; };
+		674587FC27026BF400B15B7D /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		67AD91F526F2930700EACDBE /* CustomTaggingSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomTaggingSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67AD91F826F2930700EACDBE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		67AD91F926F2930700EACDBE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -39,6 +46,8 @@
 		67AD921626F2947100EACDBE /* TagSuggestionWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagSuggestionWindow.h; sourceTree = "<group>"; };
 		67AD921726F2947100EACDBE /* TagSuggestionWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagSuggestionWindow.m; sourceTree = "<group>"; };
 		67AD921826F2947100EACDBE /* TagSuggestionWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagSuggestionWindow.xib; sourceTree = "<group>"; };
+		67DC6B4C2713B8800059E63A /* TagTextAttachmentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagTextAttachmentCell.h; sourceTree = "<group>"; };
+		67DC6B4D2713B8800059E63A /* TagTextAttachmentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagTextAttachmentCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +65,9 @@
 			isa = PBXGroup;
 			children = (
 				67AD91F726F2930700EACDBE /* CustomTaggingSystem */,
+				674587FB27026BF400B15B7D /* doc */,
+				674587FC27026BF400B15B7D /* LICENSE */,
+				674587FA27026BF400B15B7D /* README.md */,
 				67AD91F626F2930700EACDBE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,8 +97,12 @@
 				67AD920626F2930800EACDBE /* CustomTaggingSystem.entitlements */,
 				67AD921326F2944400EACDBE /* CountValueTransformer.h */,
 				67AD921426F2944400EACDBE /* CountValueTransformer.m */,
+				67200BAA26FCE4DC00D2F1E7 /* TagTextView.h */,
+				67200BAB26FCE4DC00D2F1E7 /* TagTextView.m */,
 				67AD921026F2942000EACDBE /* TagTextAttachment.h */,
 				67AD921126F2942000EACDBE /* TagTextAttachment.m */,
+				67DC6B4C2713B8800059E63A /* TagTextAttachmentCell.h */,
+				67DC6B4D2713B8800059E63A /* TagTextAttachmentCell.m */,
 				67AD920D26F293EC00EACDBE /* NSString+ComparisonIndex.h */,
 				67AD920E26F293EC00EACDBE /* NSString+ComparisonIndex.m */,
 			);
@@ -166,9 +182,11 @@
 				67AD91FD26F2930700EACDBE /* MainViewController.m in Sources */,
 				67AD920526F2930800EACDBE /* main.m in Sources */,
 				67AD91FA26F2930700EACDBE /* AppDelegate.m in Sources */,
+				67200BAC26FCE4DC00D2F1E7 /* TagTextView.m in Sources */,
 				67AD921226F2942000EACDBE /* TagTextAttachment.m in Sources */,
 				67AD920F26F293EC00EACDBE /* NSString+ComparisonIndex.m in Sources */,
 				67AD921526F2944400EACDBE /* CountValueTransformer.m in Sources */,
+				67DC6B4E2713B8800059E63A /* TagTextAttachmentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
