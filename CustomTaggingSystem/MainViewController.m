@@ -8,7 +8,6 @@
 #import "MainViewController.h"
 #import "TagSuggestionWindow.h"
 #import "TagTextAttachment.h"
-#import "TagTextAttachmentCell.h"
 #import "NSString+ComparisonIndex.h"
 
 @interface MainViewController ()
@@ -268,7 +267,6 @@
     if ([self.currentTags containsObject:itemName]) return;
     
     TagTextAttachment *attachment = [[TagTextAttachment alloc] init];
-    TagTextAttachmentCell *attachmentCell = [[TagTextAttachmentCell alloc] init];
     
     NSSize textSize = [itemName sizeWithAttributes:@{
         NSFontAttributeName: [NSFont systemFontOfSize:12]
@@ -280,7 +278,8 @@
     
     // Offset the actual tag so that there can be spacing around it
     NSRect tagRect = NSMakeRect(1, 1, tagSize.width - 2, tagSize.height - 2);
-
+    
+    // Create the tag Image
     NSImage *tagImage = [[NSImage alloc] initWithSize:tagSize];
     [tagImage lockFocus];
     
@@ -300,14 +299,11 @@
         
     [tagImage unlockFocus];
     
-    // Set attachmentCell content
-    [attachmentCell setImage:tagImage];
-    
-    // Set attachmentCell offset
-    [attachmentCell setVerticalOffset:self.textView.font.descender - 2];
-    
-    // Set attachment to attachmentCell
-    [attachment setAttachmentCell:attachmentCell];
+    // Set the attachment bound
+    [attachment setBounds:NSMakeRect(0, self.textView.font.descender - 2, tagImage.size.width, tagImage.size.height)];
+
+    // Set the attachment image
+    [attachment setImage:tagImage];
     
     // Set tag name
     [attachment setName:itemName];
