@@ -5,6 +5,7 @@
 //  Created by Siddhartha Juluru on 9/23/21.
 //
 
+#import "AppDelegate.h"
 #import "TagTextView.h"
 #import "TagTextAttachment.h"
 
@@ -37,7 +38,10 @@
         NSUInteger charIndex = [self.layoutManager characterIndexForGlyphAtIndex:glyphIndex];
         TagTextAttachment *attachment = [self.textStorage attribute:NSAttachmentAttributeName atIndex:charIndex effectiveRange:nil];
         
-        NSLog(@"%@", attachment.name);
+        NSPredicate *filter = [NSPredicate predicateWithFormat:@"id == %@", attachment.tagID];
+        NSArray<NSDictionary *> * tags = [((AppDelegate *) NSApplication.sharedApplication.delegate).possibleTags filteredArrayUsingPredicate:filter];
+        NSLog(@"%@", attachment.tagID);
+        NSLog(@"%@", tags.firstObject);
     }
 }
 

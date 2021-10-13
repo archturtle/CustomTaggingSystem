@@ -5,6 +5,7 @@
 //  Created by Siddhartha Juluru on 9/15/21.
 //
 
+#import "AppDelegate.h"
 #import "MainViewController.h"
 #import "TagSuggestionWindow.h"
 #import "TagTextAttachment.h"
@@ -13,10 +14,9 @@
 @interface MainViewController ()
 
 /**
- The list of possible tags that can be shown inside the suggestions
- window.
+ The shared delegate for the entire application.
  */
-@property NSMutableArray<NSDictionary *> * possibleTags;
+@property AppDelegate * appDelegate;
 
 /**
  The list of tags that are currently inside the textView. Updates on
@@ -82,30 +82,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.possibleTags = [[NSMutableArray alloc] initWithArray:@[
-        @{ @"name": @"extract", @"count": @(456), @"color": NSColor.systemRedColor },
-        @{ @"name": @"electron", @"count": @(463), @"color": NSColor.systemBlueColor },
-        @{ @"name": @"expansion", @"count": @(496), @"color": NSColor.systemGreenColor },
-        @{ @"name": @"environment", @"count": @(460), @"color": NSColor.systemOrangeColor },
-        @{ @"name": @"experience", @"count": @(4652), @"color": NSColor.systemYellowColor },
-        @{ @"name": @"hilarious", @"count": @(416), @"color": NSColor.systemBrownColor },
-        @{ @"name": @"straw", @"count": @(46087), @"color": NSColor.systemPinkColor },
-        @{ @"name": @"script", @"count": @(496), @"color": NSColor.systemPurpleColor },
-        @{ @"name": @"damage", @"count": @(486), @"color": NSColor.systemGrayColor },
-        @{ @"name": @"deposit", @"count": @(646), @"color": NSColor.systemTealColor },
-        @{ @"name": @"essay", @"count": @(465), @"color": NSColor.systemIndigoColor },
-        @{ @"name": @"right", @"count": @(4465), @"color": [NSColor colorWithRed:0.10f green:0.52f blue:0.63f alpha:1.0f] },
-        @{ @"name": @"gun", @"count": @(463), @"color": NSColor.systemRedColor },
-        @{ @"name": @"guess", @"count": @(416), @"color": NSColor.systemBlueColor },
-        @{ @"name": @"helicoper", @"count": @(436), @"color": NSColor.systemGreenColor },
-        @{ @"name": @"prestige", @"count": @(456), @"color": NSColor.systemOrangeColor },
-        @{ @"name": @"outline", @"count": @(46342), @"color": NSColor.systemYellowColor },
-        @{ @"name": @"reduce", @"count": @(2346), @"color": NSColor.systemBrownColor },
-        @{ @"name": @"circumstance", @"count": @(4342), @"color": NSColor.systemPinkColor },
-        @{ @"name": @"reception", @"count": @(443), @"color": NSColor.systemPurpleColor },
-    ]];
-            
+    
+    self.appDelegate = NSApplication.sharedApplication.delegate;
+    
     [self.textView setDelegate:self];
     [self.textView setTextContainerInset:NSMakeSize(0, 5)];
     [self.textView unregisterDraggedTypes];
@@ -114,7 +93,7 @@
     self.attachmentCharacter = [NSString stringWithCharacters:&character length:1];
     
     self.saveFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"Tags.plist"];
-    
+        
     // Uncomment Load saved tags on app startup.
 //    [self loadTags:nil];
 }
@@ -127,8 +106,8 @@
     [self.textView.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textView.textStorage.length) options:0 usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
         if (value == nil) return;
         
-        TagTextAttachment *tag = (TagTextAttachment *) value;
-        [list addObject:tag.name];
+        NSString *tagID = ((TagTextAttachment *) value).tagID;
+        [list addObject:tagID];
     }];
     
     return list;
@@ -149,9 +128,9 @@
 - (IBAction)loadTags:(id)sender {
     NSDictionary *saveFileData = [[NSDictionary alloc] initWithContentsOfFile:self.saveFilePath];
     
-    for (NSString *name in [saveFileData objectForKey:@"Tags"]) {
-        NSPredicate *filter = [NSPredicate predicateWithFormat:@"name == %@", name];
-        NSArray<NSDictionary *> * tags = [self.possibleTags filteredArrayUsingPredicate:filter];
+    for (NSString *iD in [saveFileData objectForKey:@"Tags"]) {
+        NSPredicate *filter = [NSPredicate predicateWithFormat:@"id == %@", iD];
+        NSArray<NSDictionary *> * tags = [self.appDelegate.possibleTags filteredArrayUsingPredicate:filter];
         if (tags.count == 0) return;
         
         [self insertTag:tags.firstObject];
@@ -159,10 +138,11 @@
 }
 
 - (NSArray<NSDictionary *>*)getPossibleSuggestions:(NSString *)text {
-    return [self.possibleTags filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+    return [self.appDelegate.possibleTags filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        NSString *tagID = (NSString *) [((NSDictionary *) evaluatedObject) objectForKey:@"id"];
         NSString *tagName = (NSString *) [((NSDictionary *) evaluatedObject) objectForKey:@"name"];
         
-        return [tagName hasPrefix:text] && ![self.currentTags containsObject:tagName];
+        return [tagName hasPrefix:text] && ![self.currentTags containsObject:tagID];
     }]];
 }
 
@@ -230,19 +210,20 @@
         NSString *textViewString = [self cleanTextViewString:self.textView.textStorage.string];
         if ([textViewString isEqualToString:@""]) return;
         
-        NSArray<NSDictionary *>* results = [self.possibleTags filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        NSArray<NSDictionary *>* results = [self.appDelegate.possibleTags filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
                 return [(NSString *) [(NSDictionary *) evaluatedObject objectForKey:@"name"] isEqualToString:textViewString];
         }]];
         
         if (results.count == 0) {
             NSDictionary *tagItem = @{
+                @"id": @"fsjah64hea",
                 @"name": [NSString stringWithFormat:@"%@", textViewString],
                 @"count": @(1),
                 @"color": NSColor.systemGrayColor
             };
                 
             item = tagItem;
-            [self.possibleTags addObject:tagItem];
+            [self.appDelegate.possibleTags addObject:tagItem];
         } else {
             item = results.firstObject;
         }
@@ -261,6 +242,7 @@
         [self.textView delete:nil];
     }];
     
+    NSString *itemID = [item valueForKey:@"id"];
     NSString *itemName = [item valueForKey:@"name"];
     NSColor *itemColor = [item valueForKey:@"color"];
     
@@ -306,7 +288,7 @@
     [attachment setImage:tagImage];
     
     // Set tag name
-    [attachment setName:itemName];
+    [attachment setTagID:itemID];
     
     NSAttributedString *tag = [NSAttributedString attributedStringWithAttachment:attachment];
     
