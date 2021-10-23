@@ -21,7 +21,7 @@
     NSColor *color = (NSColor *) value;
     
     // Create rect and size objects
-    NSRect tagColorRect = NSMakeRect(1.0, 1.0, 14.0, 14.0);
+    NSRect tagColorRect = NSMakeRect(2.0, 2.0, 12.0, 12.0);
     NSSize tagColorSize = NSMakeSize(16.0, 16.0);
     
     // Create image
@@ -31,13 +31,14 @@
     [tagColor lockFocus];
     
     // Rounded Corners
-    NSBezierPath *bezPath = [NSBezierPath bezierPathWithRoundedRect:tagColorRect xRadius:2.5f yRadius:2.5f];
+    NSBezierPath *bezPath = [NSBezierPath bezierPathWithRoundedRect:tagColorRect xRadius:8.0f yRadius:8.0f];
     [bezPath addClip];
     
     // Fill color
     [color setFill];
     NSRectFill(tagColorRect);
     
+    // End drawing
     [tagColor unlockFocus];
     
     return tagColor;

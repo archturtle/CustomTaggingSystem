@@ -39,8 +39,9 @@
         NSUInteger charIndex = [self.layoutManager characterIndexForGlyphAtIndex:glyphIndex];
         TagTextAttachment *attachment = [self.textStorage attribute:NSAttachmentAttributeName atIndex:charIndex effectiveRange:nil];
         
-        NSPredicate *filter = [NSPredicate predicateWithFormat:@"id == %@", attachment.tagID];
+        NSPredicate *filter = [NSPredicate predicateWithFormat:@"ID == %@", attachment.tagID];
         NSArray<Tag *> * tags = [((AppDelegate *) NSApplication.sharedApplication.delegate).possibleTags filteredArrayUsingPredicate:filter];
+        
         NSLog(@"%@", attachment.tagID);
         NSLog(@"%@", tags.firstObject);
     }
