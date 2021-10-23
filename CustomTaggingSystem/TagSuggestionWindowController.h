@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TagSuggestionWindow : NSWindowController <NSTableViewDelegate, NSTableViewDataSource>
+@interface TagSuggestionWindowController : NSWindowController <NSTableViewDelegate, NSTableViewDataSource>
 
 /**
  The binding to the tableView that is used to display the

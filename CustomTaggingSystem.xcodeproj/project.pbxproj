@@ -16,9 +16,10 @@
 		67AD920526F2930800EACDBE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD920426F2930800EACDBE /* main.m */; };
 		67AD920F26F293EC00EACDBE /* NSString+ComparisonIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD920E26F293EC00EACDBE /* NSString+ComparisonIndex.m */; };
 		67AD921226F2942000EACDBE /* TagTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD921126F2942000EACDBE /* TagTextAttachment.m */; };
-		67AD921526F2944400EACDBE /* CountValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD921426F2944400EACDBE /* CountValueTransformer.m */; };
-		67AD921926F2947100EACDBE /* TagSuggestionWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD921726F2947100EACDBE /* TagSuggestionWindow.m */; };
+		67AD921526F2944400EACDBE /* ItemsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD921426F2944400EACDBE /* ItemsValueTransformer.m */; };
+		67AD921926F2947100EACDBE /* TagSuggestionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD921726F2947100EACDBE /* TagSuggestionWindowController.m */; };
 		67AD921A26F2947100EACDBE /* TagSuggestionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67AD921826F2947100EACDBE /* TagSuggestionWindow.xib */; };
+		67F541A52723AD4A00810C77 /* ColorValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F541A42723AD4A00810C77 /* ColorValueTransformer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,11 +44,13 @@
 		67AD920E26F293EC00EACDBE /* NSString+ComparisonIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+ComparisonIndex.m"; sourceTree = "<group>"; };
 		67AD921026F2942000EACDBE /* TagTextAttachment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagTextAttachment.h; sourceTree = "<group>"; };
 		67AD921126F2942000EACDBE /* TagTextAttachment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagTextAttachment.m; sourceTree = "<group>"; };
-		67AD921326F2944400EACDBE /* CountValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountValueTransformer.h; sourceTree = "<group>"; };
-		67AD921426F2944400EACDBE /* CountValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountValueTransformer.m; sourceTree = "<group>"; };
-		67AD921626F2947100EACDBE /* TagSuggestionWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagSuggestionWindow.h; sourceTree = "<group>"; };
-		67AD921726F2947100EACDBE /* TagSuggestionWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagSuggestionWindow.m; sourceTree = "<group>"; };
+		67AD921326F2944400EACDBE /* ItemsValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemsValueTransformer.h; sourceTree = "<group>"; };
+		67AD921426F2944400EACDBE /* ItemsValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemsValueTransformer.m; sourceTree = "<group>"; };
+		67AD921626F2947100EACDBE /* TagSuggestionWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagSuggestionWindowController.h; sourceTree = "<group>"; };
+		67AD921726F2947100EACDBE /* TagSuggestionWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagSuggestionWindowController.m; sourceTree = "<group>"; };
 		67AD921826F2947100EACDBE /* TagSuggestionWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagSuggestionWindow.xib; sourceTree = "<group>"; };
+		67F541A32723AD4A00810C77 /* ColorValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorValueTransformer.h; sourceTree = "<group>"; };
+		67F541A42723AD4A00810C77 /* ColorValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorValueTransformer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +95,8 @@
 				67AD91FB26F2930700EACDBE /* MainViewController.h */,
 				67AD91FC26F2930700EACDBE /* MainViewController.m */,
 				67AD920026F2930800EACDBE /* Main.storyboard */,
-				67AD921626F2947100EACDBE /* TagSuggestionWindow.h */,
-				67AD921726F2947100EACDBE /* TagSuggestionWindow.m */,
+				67AD921626F2947100EACDBE /* TagSuggestionWindowController.h */,
+				67AD921726F2947100EACDBE /* TagSuggestionWindowController.m */,
 				67AD921826F2947100EACDBE /* TagSuggestionWindow.xib */,
 				67200BAA26FCE4DC00D2F1E7 /* TagTextView.h */,
 				67200BAB26FCE4DC00D2F1E7 /* TagTextView.m */,
@@ -103,8 +106,10 @@
 				671AF684272377F000A5840E /* Tag.m */,
 				67AD920D26F293EC00EACDBE /* NSString+ComparisonIndex.h */,
 				67AD920E26F293EC00EACDBE /* NSString+ComparisonIndex.m */,
-				67AD921326F2944400EACDBE /* CountValueTransformer.h */,
-				67AD921426F2944400EACDBE /* CountValueTransformer.m */,
+				67AD921326F2944400EACDBE /* ItemsValueTransformer.h */,
+				67AD921426F2944400EACDBE /* ItemsValueTransformer.m */,
+				67F541A32723AD4A00810C77 /* ColorValueTransformer.h */,
+				67F541A42723AD4A00810C77 /* ColorValueTransformer.m */,
 			);
 			path = CustomTaggingSystem;
 			sourceTree = "<group>";
@@ -178,15 +183,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67AD921926F2947100EACDBE /* TagSuggestionWindow.m in Sources */,
+				67AD921926F2947100EACDBE /* TagSuggestionWindowController.m in Sources */,
 				67AD91FD26F2930700EACDBE /* MainViewController.m in Sources */,
 				67AD920526F2930800EACDBE /* main.m in Sources */,
+				67F541A52723AD4A00810C77 /* ColorValueTransformer.m in Sources */,
 				67AD91FA26F2930700EACDBE /* AppDelegate.m in Sources */,
 				671AF685272377F000A5840E /* Tag.m in Sources */,
 				67200BAC26FCE4DC00D2F1E7 /* TagTextView.m in Sources */,
 				67AD921226F2942000EACDBE /* TagTextAttachment.m in Sources */,
 				67AD920F26F293EC00EACDBE /* NSString+ComparisonIndex.m in Sources */,
-				67AD921526F2944400EACDBE /* CountValueTransformer.m in Sources */,
+				67AD921526F2944400EACDBE /* ItemsValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

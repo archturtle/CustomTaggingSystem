@@ -7,7 +7,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
-#import "TagSuggestionWindow.h"
+#import "TagSuggestionWindowController.h"
 #import "TagTextAttachment.h"
 #import "NSString+ComparisonIndex.h"
 
@@ -28,7 +28,7 @@
  The suggestion window that will be used to display all of our
  tag suggestions.
  */
-@property TagSuggestionWindow * suggestionWindow;
+@property TagSuggestionWindowController * suggestionWindow;
 
 /**
  The character that NSTextAttachments show up as when accessing the
@@ -147,7 +147,7 @@
 
 - (void)textDidBeginEditing:(NSNotification *)notification {
     if (!self.suggestionWindow) {
-        self.suggestionWindow = [[TagSuggestionWindow alloc] initWithWindowNibName:@"TagSuggestionWindow"];
+        self.suggestionWindow = [[TagSuggestionWindowController alloc] initWithWindowNibName:@"TagSuggestionWindow"];
         self.suggestionWindow.target = self;
         self.suggestionWindow.action = @selector(updateTextView);
     }

@@ -5,9 +5,9 @@
 //  Created by Siddhartha Juluru on 9/15/21.
 //
 
-#import "CountValueTransformer.h"
+#import "ItemsValueTransformer.h"
 
-@implementation CountValueTransformer
+@implementation ItemsValueTransformer
 
 + (Class)transformedValueClass {
     return [NSString class];

@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CountValueTransformer : NSValueTransformer
+@interface ItemsValueTransformer : NSValueTransformer
 
 @end
 

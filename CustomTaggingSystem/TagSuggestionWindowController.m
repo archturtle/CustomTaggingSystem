@@ -5,10 +5,10 @@
 //  Created by Siddhartha Juluru on 9/15/21.
 //
 
-#import "TagSuggestionWindow.h"
+#import "TagSuggestionWindowController.h"
 #import "Tag.h"
 
-@interface TagSuggestionWindow ()
+@interface TagSuggestionWindowController ()
 
 /**
  The focus observer which notifies the window that the user
@@ -25,7 +25,7 @@
 
 @end
 
-@implementation TagSuggestionWindow
+@implementation TagSuggestionWindowController
 
 - (void)windowDidLoad {
     [super windowDidLoad];
@@ -33,6 +33,7 @@
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
 }
+
 
 @synthesize selectedSuggestion = _selectedSuggestion;
 

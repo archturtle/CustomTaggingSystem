@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="TagSuggestionWindow">
+        <customObject id="-2" userLabel="File's Owner" customClass="TagSuggestionWindowController">
             <connections>
                 <outlet property="arrayController" destination="Ghw-gT-ed7" id="y2b-H4-3bZ"/>
                 <outlet property="scrollView" destination="yBS-wf-PfN" id="brb-GP-JKs"/>
@@ -60,6 +60,14 @@
                                                                 <constraint firstAttribute="width" constant="16" id="mXm-0u-qXY"/>
                                                             </constraints>
                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="aM2-LC-yY5"/>
+                                                            <connections>
+                                                                <binding destination="Dbb-26-evl" name="value" keyPath="objectValue.color" id="6ow-yE-SqB">
+                                                                    <dictionary key="options">
+                                                                        <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                                                        <string key="NSValueTransformerName">ColorValueTransformer</string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
                                                         </imageView>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dHZ-fE-Y6a">
                                                             <rect key="frame" x="19" y="2" width="40" height="16"/>
@@ -73,16 +81,16 @@
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GOS-Y6-3qO">
-                                                            <rect key="frame" x="404" y="2" width="41" height="16"/>
-                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Count" id="HO5-CQ-QbY">
+                                                            <rect key="frame" x="407" y="2" width="38" height="16"/>
+                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Items" id="HO5-CQ-QbY">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="Dbb-26-evl" name="value" keyPath="objectValue.items" id="pUL-cg-5SP">
+                                                                <binding destination="Dbb-26-evl" name="value" keyPath="objectValue.items" id="B1E-FD-Z2Z">
                                                                     <dictionary key="options">
-                                                                        <string key="NSValueTransformerName">CountValueTransformer</string>
+                                                                        <string key="NSValueTransformerName">ItemsValueTransformer</string>
                                                                     </dictionary>
                                                                 </binding>
                                                             </connections>
