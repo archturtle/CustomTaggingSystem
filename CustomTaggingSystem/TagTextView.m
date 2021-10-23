@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "TagTextView.h"
 #import "TagTextAttachment.h"
+#import "Tag.h"
 
 @implementation TagTextView
 
@@ -39,7 +40,7 @@
         TagTextAttachment *attachment = [self.textStorage attribute:NSAttachmentAttributeName atIndex:charIndex effectiveRange:nil];
         
         NSPredicate *filter = [NSPredicate predicateWithFormat:@"id == %@", attachment.tagID];
-        NSArray<NSDictionary *> * tags = [((AppDelegate *) NSApplication.sharedApplication.delegate).possibleTags filteredArrayUsingPredicate:filter];
+        NSArray<Tag *> * tags = [((AppDelegate *) NSApplication.sharedApplication.delegate).possibleTags filteredArrayUsingPredicate:filter];
         NSLog(@"%@", attachment.tagID);
         NSLog(@"%@", tags.firstObject);
     }

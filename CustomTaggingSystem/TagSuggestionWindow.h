@@ -7,6 +7,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MainViewController.h"
+#import "Tag.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -43,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The currently selected suggestion as per the table view.
  */
-@property (readonly, nullable) NSDictionary * selectedSuggestion;
+@property (readonly, nullable) Tag * selectedSuggestion;
 
 /**
  Moves the selection of the table view up one.
@@ -64,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param textView The text view for which the suggestion window should
  be displayed for.
 */
-- (void)showSuggestions:(NSArray<NSDictionary *>*)suggestions forView:(NSTextView *)textView;
+- (void)showSuggestions:(NSArray<Tag *>*)suggestions forView:(NSTextView *)textView;
 
 /**
  Stops the suggestion window from showing.

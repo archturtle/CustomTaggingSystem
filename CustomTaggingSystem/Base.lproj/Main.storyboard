@@ -758,7 +758,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="U2U-jf-6e6">
-                                <rect key="frame" x="137" y="173" width="206" height="32"/>
+                                <rect key="frame" x="165" y="160" width="150" height="32"/>
                                 <buttonCell key="cell" type="push" title="Show Current Tags" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="92g-Q2-RfT">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -770,15 +770,15 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="e58-YS-elE" secondAttribute="trailing" constant="70" id="7rl-K7-H7w"/>
+                            <constraint firstAttribute="trailing" secondItem="U2U-jf-6e6" secondAttribute="trailing" constant="172" id="8A7-K8-obQ"/>
                             <constraint firstAttribute="bottom" secondItem="fZe-wp-JsT" secondAttribute="bottom" constant="35" id="8Ej-nn-k8b"/>
+                            <constraint firstItem="U2U-jf-6e6" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="83" id="Ef1-rU-3jD"/>
                             <constraint firstItem="fZe-wp-JsT" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="70" id="THa-7t-boX"/>
-                            <constraint firstAttribute="trailing" secondItem="U2U-jf-6e6" secondAttribute="trailing" constant="144" id="Xlp-tv-rhI"/>
-                            <constraint firstItem="U2U-jf-6e6" firstAttribute="top" secondItem="9Ob-mu-0Tt" secondAttribute="bottom" constant="30" id="epJ-VR-rJG"/>
-                            <constraint firstItem="fZe-wp-JsT" firstAttribute="top" secondItem="U2U-jf-6e6" secondAttribute="bottom" constant="33" id="fjf-kO-o1k"/>
+                            <constraint firstItem="U2U-jf-6e6" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="172" id="UbW-iL-f2x"/>
                             <constraint firstItem="9Ob-mu-0Tt" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="70" id="ftK-Uj-Db3"/>
-                            <constraint firstItem="U2U-jf-6e6" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="144" id="iC7-gM-OlK"/>
                             <constraint firstAttribute="trailing" secondItem="fZe-wp-JsT" secondAttribute="trailing" constant="70" id="kP3-wC-5zQ"/>
                             <constraint firstItem="9Ob-mu-0Tt" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="n3v-Sg-njA"/>
+                            <constraint firstItem="fZe-wp-JsT" firstAttribute="top" secondItem="U2U-jf-6e6" secondAttribute="bottom" constant="20" symbolic="YES" id="s1j-dw-2B3"/>
                             <constraint firstItem="e58-YS-elE" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="uQj-Gw-Swy"/>
                         </constraints>
                     </view>

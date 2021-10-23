@@ -19,7 +19,7 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="180"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1025"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="180"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -80,7 +80,7 @@
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="Dbb-26-evl" name="value" keyPath="objectValue.count" id="tav-nw-oDz">
+                                                                <binding destination="Dbb-26-evl" name="value" keyPath="objectValue.items" id="pUL-cg-5SP">
                                                                     <dictionary key="options">
                                                                         <string key="NSValueTransformerName">CountValueTransformer</string>
                                                                     </dictionary>
@@ -132,7 +132,9 @@
             </connections>
             <point key="canvasLocation" x="113" y="144"/>
         </window>
-        <arrayController id="Ghw-gT-ed7"/>
+        <arrayController objectClassName="Tag" id="Ghw-gT-ed7">
+            <classReference key="objectClass" className="Tag"/>
+        </arrayController>
     </objects>
     <resources>
         <image name="NSApplicationIcon" width="32" height="32"/>

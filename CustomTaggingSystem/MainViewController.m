@@ -64,7 +64,7 @@
  
  @param item The item from which the tag data should be taken from.
  */
-- (void)insertTag:(NSDictionary *)item;
+- (void)insertTag:(Tag *)item;
 
 /**
  Cleans the textView string by removing attachment characters so
@@ -128,21 +128,20 @@
 - (IBAction)loadTags:(id)sender {
     NSDictionary *saveFileData = [[NSDictionary alloc] initWithContentsOfFile:self.saveFilePath];
     
-    for (NSString *iD in [saveFileData objectForKey:@"Tags"]) {
-        NSPredicate *filter = [NSPredicate predicateWithFormat:@"id == %@", iD];
-        NSArray<NSDictionary *> * tags = [self.appDelegate.possibleTags filteredArrayUsingPredicate:filter];
+    for (NSString *ID in [saveFileData objectForKey:@"Tags"]) {
+        NSPredicate *filter = [NSPredicate predicateWithFormat:@"ID == %@", ID];
+        NSArray<Tag *> * tags = [self.appDelegate.possibleTags filteredArrayUsingPredicate:filter];
         if (tags.count == 0) return;
         
         [self insertTag:tags.firstObject];
     }
 }
 
-- (NSArray<NSDictionary *>*)getPossibleSuggestions:(NSString *)text {
+- (NSArray<Tag *>*)getPossibleSuggestions:(NSString *)text {
     return [self.appDelegate.possibleTags filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-        NSString *tagID = (NSString *) [((NSDictionary *) evaluatedObject) objectForKey:@"id"];
-        NSString *tagName = (NSString *) [((NSDictionary *) evaluatedObject) objectForKey:@"name"];
+        Tag *tag = (Tag *) evaluatedObject;
         
-        return [tagName hasPrefix:text] && ![self.currentTags containsObject:tagID];
+        return [tag.name hasPrefix:text] && ![self.currentTags containsObject:tag.ID];
     }]];
 }
 
@@ -204,26 +203,21 @@
 }
 
 - (void)insertTag {
-    NSDictionary *item;
+    Tag *item;
         
     if (!self.suggestionWindow.selectedSuggestion) {
         NSString *textViewString = [self cleanTextViewString:self.textView.textStorage.string];
         if ([textViewString isEqualToString:@""]) return;
         
-        NSArray<NSDictionary *>* results = [self.appDelegate.possibleTags filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-                return [(NSString *) [(NSDictionary *) evaluatedObject objectForKey:@"name"] isEqualToString:textViewString];
+        NSArray<Tag *>* results = [self.appDelegate.possibleTags filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+                return [((Tag *) evaluatedObject).name isEqualToString:textViewString];
         }]];
         
         if (results.count == 0) {
-            NSDictionary *tagItem = @{
-                @"id": @"fsjah64hea",
-                @"name": [NSString stringWithFormat:@"%@", textViewString],
-                @"count": @(1),
-                @"color": NSColor.systemGrayColor
-            };
-                
-            item = tagItem;
-            [self.appDelegate.possibleTags addObject:tagItem];
+            Tag *newTag = [[Tag alloc] initWithName:[NSString stringWithFormat:@"%@", textViewString] Color:NSColor.systemGrayColor];
+            
+            item = newTag;
+            [self.appDelegate.possibleTags addObject:newTag];
         } else {
             item = results.firstObject;
         }
@@ -234,7 +228,7 @@
     [self insertTag:item];
 }
 
-- (void)insertTag:(NSDictionary *)item {
+- (void)insertTag:(Tag *)item {
     [self.textView.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textView.textStorage.length) options:0 usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
         if (value != nil) return;
         
@@ -242,15 +236,11 @@
         [self.textView delete:nil];
     }];
     
-    NSString *itemID = [item valueForKey:@"id"];
-    NSString *itemName = [item valueForKey:@"name"];
-    NSColor *itemColor = [item valueForKey:@"color"];
-    
-    if ([self.currentTags containsObject:itemName]) return;
+    if ([self.currentTags containsObject:item.name]) return;
     
     TagTextAttachment *attachment = [[TagTextAttachment alloc] init];
     
-    NSSize textSize = [itemName sizeWithAttributes:@{
+    NSSize textSize = [item.name sizeWithAttributes:@{
         NSFontAttributeName: [NSFont systemFontOfSize:12]
     }];
         
@@ -270,11 +260,11 @@
     [bezPath addClip];
         
     // Set Fill Color
-    [itemColor setFill];
+    [item.color setFill];
     NSRectFill(tagRect);
         
     // Center the text inside the offset tag
-    [itemName drawInRect:NSMakeRect(4.0f, 0.0f, tagSize.width - 2, tagSize.height - 2) withAttributes:@{
+    [item.name drawInRect:NSMakeRect(4.0f, 0.0f, tagSize.width - 2, tagSize.height - 2) withAttributes:@{
         NSFontAttributeName: [NSFont systemFontOfSize:12],
         NSForegroundColorAttributeName: NSColor.textColor
     }];
@@ -288,7 +278,7 @@
     [attachment setImage:tagImage];
     
     // Set tag name
-    [attachment setTagID:itemID];
+    [attachment setTagID:item.ID];
     
     NSAttributedString *tag = [NSAttributedString attributedStringWithAttachment:attachment];
     

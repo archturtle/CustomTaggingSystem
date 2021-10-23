@@ -6,6 +6,7 @@
 //
 
 #import "TagSuggestionWindow.h"
+#import "Tag.h"
 
 @interface TagSuggestionWindow ()
 
@@ -40,7 +41,7 @@
     return currentRow == -1 ? nil : [self.arrayController.arrangedObjects objectAtIndex:currentRow];
 }
 
-- (void)showSuggestions:(NSArray<NSDictionary *> *)suggestions forView:(NSTextView *)textView {
+- (void)showSuggestions:(NSArray<Tag *> *)suggestions forView:(NSTextView *)textView {
     if (suggestions.count == 0) return [self cancelSuggestions];
     
     [self.arrayController setContent:suggestions];

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		671AF685272377F000A5840E /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 671AF684272377F000A5840E /* Tag.m */; };
 		67200BAC26FCE4DC00D2F1E7 /* TagTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 67200BAB26FCE4DC00D2F1E7 /* TagTextView.m */; };
 		67AD91FA26F2930700EACDBE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD91F926F2930700EACDBE /* AppDelegate.m */; };
 		67AD91FD26F2930700EACDBE /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD91FC26F2930700EACDBE /* MainViewController.m */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		671AF683272377F000A5840E /* Tag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		671AF684272377F000A5840E /* Tag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		67200BAA26FCE4DC00D2F1E7 /* TagTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagTextView.h; sourceTree = "<group>"; };
 		67200BAB26FCE4DC00D2F1E7 /* TagTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagTextView.m; sourceTree = "<group>"; };
 		674587FA27026BF400B15B7D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -80,26 +83,28 @@
 		67AD91F726F2930700EACDBE /* CustomTaggingSystem */ = {
 			isa = PBXGroup;
 			children = (
+				67AD920426F2930800EACDBE /* main.m */,
+				67AD920326F2930800EACDBE /* Info.plist */,
+				67AD91FE26F2930800EACDBE /* Assets.xcassets */,
+				67AD920626F2930800EACDBE /* CustomTaggingSystem.entitlements */,
 				67AD91F826F2930700EACDBE /* AppDelegate.h */,
 				67AD91F926F2930700EACDBE /* AppDelegate.m */,
 				67AD91FB26F2930700EACDBE /* MainViewController.h */,
 				67AD91FC26F2930700EACDBE /* MainViewController.m */,
+				67AD920026F2930800EACDBE /* Main.storyboard */,
 				67AD921626F2947100EACDBE /* TagSuggestionWindow.h */,
 				67AD921726F2947100EACDBE /* TagSuggestionWindow.m */,
-				67AD91FE26F2930800EACDBE /* Assets.xcassets */,
-				67AD920026F2930800EACDBE /* Main.storyboard */,
 				67AD921826F2947100EACDBE /* TagSuggestionWindow.xib */,
-				67AD920326F2930800EACDBE /* Info.plist */,
-				67AD920426F2930800EACDBE /* main.m */,
-				67AD920626F2930800EACDBE /* CustomTaggingSystem.entitlements */,
-				67AD921326F2944400EACDBE /* CountValueTransformer.h */,
-				67AD921426F2944400EACDBE /* CountValueTransformer.m */,
 				67200BAA26FCE4DC00D2F1E7 /* TagTextView.h */,
 				67200BAB26FCE4DC00D2F1E7 /* TagTextView.m */,
 				67AD921026F2942000EACDBE /* TagTextAttachment.h */,
 				67AD921126F2942000EACDBE /* TagTextAttachment.m */,
+				671AF683272377F000A5840E /* Tag.h */,
+				671AF684272377F000A5840E /* Tag.m */,
 				67AD920D26F293EC00EACDBE /* NSString+ComparisonIndex.h */,
 				67AD920E26F293EC00EACDBE /* NSString+ComparisonIndex.m */,
+				67AD921326F2944400EACDBE /* CountValueTransformer.h */,
+				67AD921426F2944400EACDBE /* CountValueTransformer.m */,
 			);
 			path = CustomTaggingSystem;
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 				67AD91FD26F2930700EACDBE /* MainViewController.m in Sources */,
 				67AD920526F2930800EACDBE /* main.m in Sources */,
 				67AD91FA26F2930700EACDBE /* AppDelegate.m in Sources */,
+				671AF685272377F000A5840E /* Tag.m in Sources */,
 				67200BAC26FCE4DC00D2F1E7 /* TagTextView.m in Sources */,
 				67AD921226F2942000EACDBE /* TagTextAttachment.m in Sources */,
 				67AD920F26F293EC00EACDBE /* NSString+ComparisonIndex.m in Sources */,
