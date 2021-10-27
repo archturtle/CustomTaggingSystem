@@ -48,6 +48,18 @@
 @property NSString * saveFilePath;
 
 /**
+ The boolean used to determine if a tag should be automatically created
+ if it doesn't exist.
+ */
+@property bool shouldAutomaticallyCreate;
+
+/**
+ Toggles the shouldCreate property based on the value of the suppression
+ button in the NSAlert.
+ */
+- (void)toggleShouldCreate;
+
+/**
  Updates the textView with the content of the currently selected tag in
  the suggestions window.
  */
@@ -70,7 +82,7 @@
  Cleans the textView string by removing attachment characters so
  that only user-inputted text is left.
  
- @param initial The value of the string propety in a textView.
+ @param initial The value of the string property in a textView.
  
  @return The cleaned string without any attachment characters.
  */
@@ -93,7 +105,7 @@
     self.attachmentCharacter = [NSString stringWithCharacters:&character length:1];
     
     self.saveFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"Tags.plist"];
-        
+    
     // Uncomment Load saved tags on app startup.
 //    [self loadTags:nil];
 }
@@ -129,6 +141,8 @@
     NSDictionary *saveFileData = [[NSDictionary alloc] initWithContentsOfFile:self.saveFilePath];
     
     for (NSString *ID in [saveFileData objectForKey:@"Tags"]) {
+        if ([self.currentTags containsObject:ID]) return;
+    
         NSPredicate *filter = [NSPredicate predicateWithFormat:@"ID == %@", ID];
         NSArray<Tag *> * tags = [self.appDelegate.possibleTags filteredArrayUsingPredicate:filter];
         if (tags.count == 0) return;
@@ -214,6 +228,19 @@
         }]];
         
         if (results.count == 0) {
+            if (!self.shouldAutomaticallyCreate) {
+                NSAlert *shouldCreate = [[NSAlert alloc] init];
+                
+                [shouldCreate setMessageText:[NSString stringWithFormat:@"The tag \"%@\" does not exist. Do you want to create it?", textViewString]];
+                [shouldCreate addButtonWithTitle:@"Create"];
+                [shouldCreate addButtonWithTitle:@"Cancel"];
+                [shouldCreate setShowsSuppressionButton:YES];
+                [shouldCreate.suppressionButton setTitle:@"Automatically create new tags"];
+                [shouldCreate.suppressionButton setAction:@selector(toggleShouldCreate)];
+                
+                if ([shouldCreate runModal] != 1000) return;
+            }
+            
             Tag *newTag = [[Tag alloc] initWithName:[NSString stringWithFormat:@"%@", textViewString] Color:NSColor.systemGrayColor];
             
             item = newTag;
@@ -325,6 +352,10 @@
 
     // Select selection
     [self.textView setSelectedRange:suggestionRange];
+}
+
+- (void)toggleShouldCreate {
+    self.shouldAutomaticallyCreate = !self.shouldAutomaticallyCreate;
 }
 
 - (void)mouseDown:(NSEvent *)event {
