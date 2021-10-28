@@ -9,8 +9,21 @@
 #import "TagTextView.h"
 #import "TagTextAttachment.h"
 #import "Tag.h"
+#import "TagEditorSheetController.h"
+
+@interface TagTextView ()
+
+@property TagEditorSheetController * editorSheet;
+
+@end
 
 @implementation TagTextView
+
+- (void)drawRect:(NSRect)dirtyRect {
+    [super drawRect:dirtyRect];
+    
+    self.editorSheet = [[TagEditorSheetController alloc] initWithWindowNibName:@"TagEditorSheet"];
+}
 
 - (NSArray<NSSharingService *> *)sharingServicePicker:(NSSharingServicePicker *)sharingServicePicker sharingServicesForItems:(NSArray *)items proposedSharingServices:(NSArray<NSSharingService *> *)proposedServices {
     return @[];
@@ -40,10 +53,13 @@
         TagTextAttachment *attachment = [self.textStorage attribute:NSAttachmentAttributeName atIndex:charIndex effectiveRange:nil];
         
         NSPredicate *filter = [NSPredicate predicateWithFormat:@"ID == %@", attachment.tagID];
-        NSArray<Tag *> * tags = [((AppDelegate *) NSApplication.sharedApplication.delegate).possibleTags filteredArrayUsingPredicate:filter];
+        Tag *tag = [((AppDelegate *) NSApplication.sharedApplication.delegate).possibleTags filteredArrayUsingPredicate:filter].firstObject;
         
-        NSLog(@"%@", attachment.tagID);
-        NSLog(@"%@", tags.firstObject);
+        // Set data of editorySheet.
+        [self.editorSheet setTag:tag];
+        
+        // Show sheet.
+        [self.window beginSheet:self.editorSheet.window completionHandler:^(NSModalResponse returnCode) {}];
     }
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6718481A272A00C5008ED849 /* TagEditorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67184818272A00C5008ED849 /* TagEditorSheetController.m */; };
+		6718481B272A00C5008ED849 /* TagEditorSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67184819272A00C5008ED849 /* TagEditorSheet.xib */; };
 		671AF685272377F000A5840E /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 671AF684272377F000A5840E /* Tag.m */; };
 		67200BAC26FCE4DC00D2F1E7 /* TagTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 67200BAB26FCE4DC00D2F1E7 /* TagTextView.m */; };
 		67AD91FA26F2930700EACDBE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD91F926F2930700EACDBE /* AppDelegate.m */; };
@@ -23,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		67184817272A00C5008ED849 /* TagEditorSheetController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagEditorSheetController.h; sourceTree = "<group>"; };
+		67184818272A00C5008ED849 /* TagEditorSheetController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagEditorSheetController.m; sourceTree = "<group>"; };
+		67184819272A00C5008ED849 /* TagEditorSheet.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagEditorSheet.xib; sourceTree = "<group>"; };
 		671AF683272377F000A5840E /* Tag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		671AF684272377F000A5840E /* Tag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		67200BAA26FCE4DC00D2F1E7 /* TagTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagTextView.h; sourceTree = "<group>"; };
@@ -98,6 +103,9 @@
 				67AD921626F2947100EACDBE /* TagSuggestionWindowController.h */,
 				67AD921726F2947100EACDBE /* TagSuggestionWindowController.m */,
 				67AD921826F2947100EACDBE /* TagSuggestionWindow.xib */,
+				67184817272A00C5008ED849 /* TagEditorSheetController.h */,
+				67184818272A00C5008ED849 /* TagEditorSheetController.m */,
+				67184819272A00C5008ED849 /* TagEditorSheet.xib */,
 				67200BAA26FCE4DC00D2F1E7 /* TagTextView.h */,
 				67200BAB26FCE4DC00D2F1E7 /* TagTextView.m */,
 				67AD921026F2942000EACDBE /* TagTextAttachment.h */,
@@ -171,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67AD91FF26F2930800EACDBE /* Assets.xcassets in Resources */,
+				6718481B272A00C5008ED849 /* TagEditorSheet.xib in Resources */,
 				67AD921A26F2947100EACDBE /* TagSuggestionWindow.xib in Resources */,
 				67AD920226F2930800EACDBE /* Main.storyboard in Resources */,
 			);
@@ -189,6 +198,7 @@
 				67F541A52723AD4A00810C77 /* ColorValueTransformer.m in Sources */,
 				67AD91FA26F2930700EACDBE /* AppDelegate.m in Sources */,
 				671AF685272377F000A5840E /* Tag.m in Sources */,
+				6718481A272A00C5008ED849 /* TagEditorSheetController.m in Sources */,
 				67200BAC26FCE4DC00D2F1E7 /* TagTextView.m in Sources */,
 				67AD921226F2942000EACDBE /* TagTextAttachment.m in Sources */,
 				67AD920F26F293EC00EACDBE /* NSString+ComparisonIndex.m in Sources */,

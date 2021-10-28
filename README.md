@@ -13,9 +13,10 @@ The tags are created using a `NSImage` that is created programatically and are s
 - Auto-creation & auto-cancellation is focus is lost
 - Saving tags to a plist file
 - Restoring tags from a plist file
+- Right click menu on tags for live-editing
 
 ## Todo
-- Right click menu on tags for live-editing
+- Live-updating after a tag has been edited.
 
 ## Contributions
 Contributions to this project are allowed. However, if the contribution is major, please open an issue to discuss your intended changes.
