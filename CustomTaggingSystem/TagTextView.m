@@ -13,11 +13,17 @@
 
 @interface TagTextView ()
 
+/**
+ The editor window that is used to edit the data of a selected
+ tag.
+ */
 @property TagEditorSheetController * editorSheet;
 
 @end
 
 @implementation TagTextView
+
+@dynamic delegate;
 
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
@@ -59,7 +65,9 @@
         [self.editorSheet setTag:tag];
         
         // Show sheet.
-        [self.window beginSheet:self.editorSheet.window completionHandler:^(NSModalResponse returnCode) {}];
+        [self.window beginSheet:self.editorSheet.window completionHandler:^(NSModalResponse returnCode) {
+            if (returnCode == NSModalResponseOK) [self.delegate tagInformationEdited:tag.ID];
+        }];
     }
 }
 

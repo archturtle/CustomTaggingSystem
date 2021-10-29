@@ -79,6 +79,13 @@
 - (void)insertTag:(Tag *)item;
 
 /**
+ Redraws a tag in the textview at a specific index.
+ 
+ @param ID The ID of the tag that should be redrawn.
+ */
+- (void)redrawTag:(NSString *)ID;
+
+/**
  Cleans the textView string by removing attachment characters so
  that only user-inputted text is left.
  
@@ -125,6 +132,15 @@
     return list;
 }
 
+
+- (NSArray<Tag *>*)getPossibleSuggestions:(NSString *)text {
+    return [self.appDelegate.possibleTags filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        Tag *tag = (Tag *) evaluatedObject;
+        
+        return [tag.name hasPrefix:text] && ![self.currentTags containsObject:tag.ID];
+    }]];
+}
+
 - (IBAction)listCurrentTags:(id)sender {
     NSLog(@"currentTags: %@", self.currentTags);
 }
@@ -149,14 +165,6 @@
         
         [self insertTag:tags.firstObject];
     }
-}
-
-- (NSArray<Tag *>*)getPossibleSuggestions:(NSString *)text {
-    return [self.appDelegate.possibleTags filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-        Tag *tag = (Tag *) evaluatedObject;
-        
-        return [tag.name hasPrefix:text] && ![self.currentTags containsObject:tag.ID];
-    }]];
 }
 
 - (void)textDidBeginEditing:(NSNotification *)notification {
@@ -216,6 +224,11 @@
     return NO;
 }
 
+- (void)tagInformationEdited:(NSString *)ID {
+    NSLog(@"%@", ID);
+    [self redrawTag:ID];
+}
+
 - (void)insertTag {
     Tag *item;
         
@@ -223,9 +236,8 @@
         NSString *textViewString = [self cleanTextViewString:self.textView.textStorage.string];
         if ([textViewString isEqualToString:@""]) return;
         
-        NSArray<Tag *>* results = [self.appDelegate.possibleTags filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-                return [((Tag *) evaluatedObject).name isEqualToString:textViewString];
-        }]];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", textViewString];
+        NSArray<Tag *>* results = [self.appDelegate.possibleTags filteredArrayUsingPredicate:predicate];
         
         if (results.count == 0) {
             if (!self.shouldAutomaticallyCreate) {
@@ -241,7 +253,7 @@
                 if ([shouldCreate runModal] != 1000) return;
             }
             
-            Tag *newTag = [[Tag alloc] initWithName:[NSString stringWithFormat:@"%@", textViewString] Color:NSColor.systemGrayColor];
+            Tag *newTag = [[Tag alloc] initWithName:[NSString stringWithFormat:@"%@", textViewString] andColor:NSColor.systemGrayColor];
             
             item = newTag;
             [self.appDelegate.possibleTags addObject:newTag];
@@ -310,6 +322,37 @@
     NSAttributedString *tag = [NSAttributedString attributedStringWithAttachment:attachment];
     
     [self.textView.textStorage insertAttributedString:tag atIndex:self.textView.selectedRange.location];
+}
+
+- (void)redrawTag:(NSString *)ID {
+    NSUInteger __block tagIndex = 0;
+    [self.textView.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textView.textStorage.length) options:0 usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
+        if (value == nil) return;
+        
+        TagTextAttachment *attachment = (TagTextAttachment *) value;
+        
+        if ([attachment.tagID isEqualToString:ID]) {
+            tagIndex = range.location;
+            *stop = YES;
+        }
+    }];
+    
+    NSLog(@"%ld", tagIndex);
+    
+    // Delete old tag
+    [self.textView setSelectedRange:NSMakeRange(tagIndex, 1)];
+    [self.textView delete:nil];
+    
+    // Fetch new tag
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ID == %@", ID];
+    Tag *newTag = [self.appDelegate.possibleTags filteredArrayUsingPredicate:predicate].firstObject;
+    
+    // Move cursor into place
+    [self.textView setSelectedRange:NSMakeRange(tagIndex, 0)];
+    [self insertTag:newTag];
+    
+    // Return cursor to end
+    [self.textView moveToEndOfLine:nil];
 }
 
 - (NSString *)cleanTextViewString:(NSString *)initial {

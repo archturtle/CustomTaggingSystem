@@ -82,9 +82,6 @@ Gw
                     <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="fF2-jJ-hG6">
                         <rect key="frame" x="60" y="50" width="323" height="69"/>
                         <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <connections>
-                            <action selector="colorSelectionChanged:" target="-2" id="FRT-Bh-Zmd"/>
-                        </connections>
                     </colorWell>
                 </subviews>
                 <constraints>

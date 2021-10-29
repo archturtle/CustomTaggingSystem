@@ -7,10 +7,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import "TagTextView.h"
+#import "TagTextViewDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MainViewController : NSViewController <NSTextViewDelegate>
+@interface MainViewController : NSViewController <TagTextViewDelegate>
 
 /**
  The binding to the text view that is used for input and tagging.

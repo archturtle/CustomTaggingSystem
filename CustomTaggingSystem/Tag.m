@@ -33,7 +33,7 @@
 
 @implementation Tag
 
-- (instancetype)initWithName:(NSString *)name Color:(NSColor *)color {
+- (instancetype)initWithName:(NSString *)name andColor:(NSColor *)color {
     self = [super init];
     if (self) {
         self.ID = [[[[NSUUID UUID] UUIDString] substringToIndex:8] lowercaseString];
@@ -44,7 +44,7 @@
     return self;
 }
 
-- (void)editedName:(NSString *)newName Color:(NSColor *)newColor {
+- (void)editName:(NSString *)newName andColor:(NSColor *)newColor {
     self.name = newName;
     self.color = newColor;
 }

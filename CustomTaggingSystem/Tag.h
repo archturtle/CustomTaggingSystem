@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return A new instance of Tag.
  */
-- (instancetype) initWithName:(NSString *)name Color:(NSColor *)color;
+- (instancetype) initWithName:(NSString *)name andColor:(NSColor *)color;
 
 
 /**
@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param newName The new name of the tag.
  @param newColor The new color of the tag.
  */
-- (void) editedName:(NSString *)newName Color:(NSColor *)newColor;
+- (void) editName:(NSString *)newName andColor:(NSColor *)newColor;
 
 @end
 

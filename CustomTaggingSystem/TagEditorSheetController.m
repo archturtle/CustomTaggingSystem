@@ -27,14 +27,16 @@
 }
 
 - (IBAction)editButtonClicked:(id)sender {
-    [self.window.sheetParent endSheet:self.window returnCode:NSModalResponseOK];
-    
     // Get the index and edit the tag.
     NSUInteger originalTagIndex = [self.appDelegate.possibleTags indexOfObject:self.tag];
-    [self.tag editedName:[NSString stringWithFormat:@"%@", self.nameTextField.stringValue] Color:self.colorWell.color];
+    [self.tag editName:[NSString stringWithFormat:@"%@", self.nameTextField.stringValue] andColor:self.colorWell.color];
 
     // Update the tag.
     [self.appDelegate.possibleTags replaceObjectAtIndex:originalTagIndex withObject:self.tag];
+    
+    // Close panel and send the ok
+    [[NSColorPanel sharedColorPanel] close];
+    [self.window.sheetParent endSheet:self.window returnCode:NSModalResponseOK];
 }
 
 - (IBAction)cancelButtonClicked:(id)sender {

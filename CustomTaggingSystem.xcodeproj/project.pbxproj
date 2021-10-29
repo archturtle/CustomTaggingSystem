@@ -32,6 +32,7 @@
 		671AF684272377F000A5840E /* Tag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		67200BAA26FCE4DC00D2F1E7 /* TagTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagTextView.h; sourceTree = "<group>"; };
 		67200BAB26FCE4DC00D2F1E7 /* TagTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagTextView.m; sourceTree = "<group>"; };
+		67259F40272B98C3007F67F9 /* TagTextViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagTextViewDelegate.h; sourceTree = "<group>"; };
 		674587FA27026BF400B15B7D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		674587FB27026BF400B15B7D /* doc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = doc; sourceTree = "<group>"; };
 		674587FC27026BF400B15B7D /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -108,6 +109,7 @@
 				67184819272A00C5008ED849 /* TagEditorSheet.xib */,
 				67200BAA26FCE4DC00D2F1E7 /* TagTextView.h */,
 				67200BAB26FCE4DC00D2F1E7 /* TagTextView.m */,
+				67259F40272B98C3007F67F9 /* TagTextViewDelegate.h */,
 				67AD921026F2942000EACDBE /* TagTextAttachment.h */,
 				67AD921126F2942000EACDBE /* TagTextAttachment.m */,
 				671AF683272377F000A5840E /* Tag.h */,
