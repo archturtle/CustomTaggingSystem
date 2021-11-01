@@ -1,5 +1,5 @@
 # Custom Tagging System
-![CustomTaggingSystem Demo](doc/demo.gif)
+![CustomTaggingSystem Demo](doc/demo.mp4)
 This project attempts to recreate the tagging system that is found in the MacOS Finder app. 
 
 ## How it Works
@@ -14,9 +14,10 @@ The tags are created using a `NSImage` that is created programatically and are s
 - Saving tags to a plist file
 - Restoring tags from a plist file
 - Right click menu on tags for live-editing
+- Live-updating after a tag has been edited.
 
 ## Todo
-- Live-updating after a tag has been edited.
+- None
 
 ## Contributions
 Contributions to this project are allowed. However, if the contribution is major, please open an issue to discuss your intended changes.
