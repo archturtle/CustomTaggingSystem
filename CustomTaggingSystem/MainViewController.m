@@ -86,6 +86,16 @@
 - (void)redrawTag:(NSString *)ID;
 
 /**
+ Determines whether the text color should be black or white based on the current
+ color of the background.
+ 
+ @param background The background color to analyze
+ 
+ @return The color the text should be.
+ */
+- (NSColor *)getTextColorForBackground:(NSColor *)background;
+
+/**
  Cleans the textView string by removing attachment characters so
  that only user-inputted text is left.
  
@@ -225,7 +235,6 @@
 }
 
 - (void)tagInformationEdited:(NSString *)ID {
-    NSLog(@"%@", ID);
     [self redrawTag:ID];
 }
 
@@ -305,7 +314,7 @@
     // Center the text inside the offset tag
     [item.name drawInRect:NSMakeRect(4.0f, 0.0f, tagSize.width - 2, tagSize.height - 2) withAttributes:@{
         NSFontAttributeName: [NSFont systemFontOfSize:12],
-        NSForegroundColorAttributeName: NSColor.textColor
+        NSForegroundColorAttributeName: [self getTextColorForBackground:item.color]
     }];
         
     [tagImage unlockFocus];
@@ -336,9 +345,7 @@
             *stop = YES;
         }
     }];
-    
-    NSLog(@"%ld", tagIndex);
-    
+        
     // Delete old tag
     [self.textView setSelectedRange:NSMakeRange(tagIndex, 1)];
     [self.textView delete:nil];
@@ -353,6 +360,21 @@
     
     // Return cursor to end
     [self.textView moveToEndOfLine:nil];
+}
+
+/**
+ Using the formula provided in https://stackoverflow.com/a/3943023 with a lower threshold.
+ */
+- (NSColor *)getTextColorForBackground:(NSColor *)background {
+    NSColor *textColor = NSColor.whiteColor;
+    NSColor *convertedBackground = [background colorUsingColorSpace:[NSColorSpace deviceRGBColorSpace]];
+    int intensity = ((convertedBackground.redComponent * 255) * 0.299) + ((convertedBackground.greenComponent * 255) * 0.587) + ((convertedBackground.blueComponent * 255) * 0.114);
+    
+    if (intensity > 148) {
+        textColor = NSColor.blackColor;
+    }
+    
+    return textColor;
 }
 
 - (NSString *)cleanTextViewString:(NSString *)initial {
