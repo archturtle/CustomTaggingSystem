@@ -1,5 +1,5 @@
 # Custom Tagging System
-![CustomTaggingSystem Demo](doc/demo.mp4)
+![CustomTaggingSystem Demo](https://user-images.githubusercontent.com/31663833/139622903-08db27f4-01aa-45fa-99ad-45dd8976a8eb.mp4)
 This project attempts to recreate the tagging system that is found in the MacOS Finder app. 
 
 ## How it Works
