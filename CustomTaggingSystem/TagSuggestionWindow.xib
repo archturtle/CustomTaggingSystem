@@ -20,23 +20,23 @@
             <rect key="contentRect" x="325" y="298" width="480" height="180"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="180"/>
+                <rect key="frame" x="0.0" y="0.0" width="483" height="180"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="20" horizontalPageScroll="10" verticalLineScroll="20" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBS-wf-PfN">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="180"/>
+                        <rect key="frame" x="0.0" y="0.0" width="483" height="180"/>
                         <clipView key="contentView" drawsBackground="NO" id="zda-W9-pWK">
-                            <rect key="frame" x="0.0" y="0.0" width="480" height="180"/>
+                            <rect key="frame" x="0.0" y="0.0" width="483" height="180"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="20" viewBased="YES" id="w5v-up-5GZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="480" height="180"/>
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="inset" selectionHighlightStyle="sourceList" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="20" viewBased="YES" id="w5v-up-5GZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="483" height="180"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <size key="intercellSpacing" width="17" height="0.0"/>
+                                    <size key="intercellSpacing" width="16" height="0.0"/>
                                     <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn width="448" minWidth="40" maxWidth="1000" id="AEa-oq-2S7">
+                                        <tableColumn width="451" minWidth="40" maxWidth="1000" id="AEa-oq-2S7">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -118,7 +118,7 @@
                             <nil key="backgroundColor"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="0f0-c0-GPa">
-                            <rect key="frame" x="1" y="118" width="238" height="16"/>
+                            <rect key="frame" x="0.0" y="164" width="483" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="XVk-hd-JUP">
