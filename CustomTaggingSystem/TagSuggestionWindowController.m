@@ -50,8 +50,6 @@
     [self.arrayController setContent:suggestions];
     [self.tableView reloadData];
     
-//    [self.tableView reloadData];
-    
     NSWindow *suggestionsWindow = self.window;
     NSWindow *textViewWindow = textView.window;
     NSRect textViewRect = [textView convertRect:textView.bounds toView:nil];
