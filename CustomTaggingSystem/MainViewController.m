@@ -10,6 +10,7 @@
 #import "TagSuggestionWindowController.h"
 #import "TagTextAttachment.h"
 #import "NSString+ComparisonIndex.h"
+#import "Tag+CoreDataClass.h"
 
 @interface MainViewController ()
 
@@ -19,10 +20,15 @@
 @property AppDelegate * appDelegate;
 
 /**
+ The object context used to managed Tags.
+ */
+@property NSManagedObjectContext * context;
+
+/**
  The list of tags that are currently inside the textView. Updates on
  insertion and deletion of tags.
  */
-@property (readonly) NSArray<NSString *> * currentTags;
+@property (readonly) NSArray<NSManagedObjectID *> * currentTags;
 
 /**
  The suggestion window that will be used to display all of our
@@ -43,15 +49,21 @@
 @property bool stopSuggestions;
 
 /**
- The path at which the save file for tags is located.
- */
-@property NSString * saveFilePath;
-
-/**
  The boolean used to determine if a tag should be automatically created
  if it doesn't exist.
  */
 @property bool shouldAutomaticallyCreate;
+
+/**
+ Filters through all created tags to find those that start with the string
+ text. This function also makes sure to only return tags that do not currently
+ exist in text view.
+ 
+ @param text The text to check if name starts with.
+ 
+ @return The list possible suggestions.
+ */
+- (NSArray<Tag *>*)getPossibleSuggestions:(NSString *)text;
 
 /**
  Toggles the shouldCreate property based on the value of the suppression
@@ -83,7 +95,7 @@
  
  @param ID The ID of the tag that should be redrawn.
  */
-- (void)redrawTag:(NSString *)ID;
+- (void)redrawTag:(NSManagedObjectID *)ID;
 
 /**
  Determines whether the text color should be black or white based on the current
@@ -113,6 +125,7 @@
     [super viewDidLoad];
     
     self.appDelegate = NSApplication.sharedApplication.delegate;
+    self.context = self.appDelegate.persistentContainer.viewContext;
     
     [self.textView setDelegate:self];
     [self.textView setTextContainerInset:NSMakeSize(0, 5)];
@@ -120,61 +133,33 @@
     
     unichar character = 0xFFFC;
     self.attachmentCharacter = [NSString stringWithCharacters:&character length:1];
-    
-    self.saveFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"Tags.plist"];
-    
-    // Uncomment Load saved tags on app startup.
-//    [self loadTags:nil];
 }
 
 @synthesize currentTags = _currentTags;
 
-- (NSArray<NSString *> *)currentTags {
+- (NSArray<NSManagedObjectID *> *)currentTags {
     NSMutableArray *list = [[NSMutableArray alloc] init];
     
     [self.textView.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textView.textStorage.length) options:0 usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
         if (value == nil) return;
         
-        NSString *tagID = ((TagTextAttachment *) value).tagID;
+        NSManagedObjectID *tagID = ((TagTextAttachment *) value).tagID;
         [list addObject:tagID];
     }];
     
     return list;
 }
 
-
 - (NSArray<Tag *>*)getPossibleSuggestions:(NSString *)text {
-    return [self.appDelegate.possibleTags filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-        Tag *tag = (Tag *) evaluatedObject;
-        
-        return [tag.name hasPrefix:text] && ![self.currentTags containsObject:tag.ID];
-    }]];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Tag"];
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"name BEGINSWITH %@ AND (NOT self in %@)", text, self.currentTags];
+    request.predicate = searchPredicate;
+    
+    return [self.context executeFetchRequest:request error:nil];
 }
 
 - (IBAction)listCurrentTags:(id)sender {
     NSLog(@"currentTags: %@", self.currentTags);
-}
-
-- (IBAction)saveTags:(id)sender {
-    NSDictionary *saveFileData = @{
-        @"Tags": [self currentTags]
-    };
-
-    [saveFileData writeToFile:self.saveFilePath atomically:YES];
-}
-
-- (IBAction)loadTags:(id)sender {
-    NSDictionary *saveFileData = [[NSDictionary alloc] initWithContentsOfFile:self.saveFilePath];
-    
-    for (NSString *ID in [saveFileData objectForKey:@"Tags"]) {
-        if ([self.currentTags containsObject:ID]) return;
-    
-        NSPredicate *filter = [NSPredicate predicateWithFormat:@"ID == %@", ID];
-        NSArray<Tag *> * tags = [self.appDelegate.possibleTags filteredArrayUsingPredicate:filter];
-        if (tags.count == 0) return;
-        
-        [self insertTag:tags.firstObject];
-    }
 }
 
 - (void)textDidBeginEditing:(NSNotification *)notification {
@@ -183,8 +168,9 @@
         self.suggestionWindow.target = self;
         self.suggestionWindow.action = @selector(updateTextView);
     }
-                    
-    [self.suggestionWindow showSuggestions:[self getPossibleSuggestions:[self cleanTextViewString:self.textView.textStorage.string]] forView:self.textView];
+    
+    NSArray<Tag *> *suggestions = [self getPossibleSuggestions:[self cleanTextViewString:self.textView.textStorage.string]];
+    [self.suggestionWindow showSuggestions:suggestions forView:self.textView];
 }
 
 - (void)textDidChange:(NSNotification *)notification {
@@ -193,7 +179,8 @@
         return [self.suggestionWindow cancelSuggestions];
     }
     
-    [self.suggestionWindow showSuggestions:[self getPossibleSuggestions:[self cleanTextViewString:self.textView.textStorage.string]] forView:self.textView];
+    NSArray<Tag *> *suggestions = [self getPossibleSuggestions:[self cleanTextViewString:self.textView.textStorage.string]];
+    [self.suggestionWindow showSuggestions:suggestions forView:self.textView];
 }
 
 - (BOOL)textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector {
@@ -225,7 +212,8 @@
         if (self.suggestionWindow.window.isVisible) {
             [self.suggestionWindow cancelSuggestions];
         } else {
-            [self.suggestionWindow showSuggestions:[self getPossibleSuggestions:[self cleanTextViewString:self.textView.textStorage.string]] forView:self.textView];
+            NSArray<Tag *> *suggestions = [self getPossibleSuggestions:[self cleanTextViewString:self.textView.textStorage.string]];
+            [self.suggestionWindow showSuggestions:suggestions forView:self.textView];
         }
         
         return YES;
@@ -234,7 +222,7 @@
     return NO;
 }
 
-- (void)tagInformationEdited:(NSString *)ID {
+- (void)tagInformationEdited:(NSManagedObjectID *)ID {
     [self redrawTag:ID];
 }
 
@@ -245,8 +233,11 @@
         NSString *textViewString = [self cleanTextViewString:self.textView.textStorage.string];
         if ([textViewString isEqualToString:@""]) return;
         
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Tag"];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", textViewString];
-        NSArray<Tag *>* results = [self.appDelegate.possibleTags filteredArrayUsingPredicate:predicate];
+        request.predicate = predicate;
+        
+        NSArray<Tag *>* results = [self.context executeFetchRequest:request error:nil];
         
         if (results.count == 0) {
             if (!self.shouldAutomaticallyCreate) {
@@ -262,10 +253,13 @@
                 if ([shouldCreate runModal] != 1000) return;
             }
             
-            Tag *newTag = [[Tag alloc] initWithName:[NSString stringWithFormat:@"%@", textViewString] andColor:NSColor.systemGrayColor];
+            Tag *newTag = [[Tag alloc] initWithContext:self.context];
+            newTag.name = [NSString stringWithFormat:@"%@", textViewString];
+            newTag.color = NSColor.systemGrayColor;
+            newTag.count = arc4random_uniform(10000);
             
             item = newTag;
-            [self.appDelegate.possibleTags addObject:newTag];
+            [self.appDelegate saveAction:nil];
         } else {
             item = results.firstObject;
         }
@@ -284,7 +278,7 @@
         [self.textView delete:nil];
     }];
     
-    if ([self.currentTags containsObject:item.name]) return;
+    if ([self.currentTags containsObject:item.objectID]) return;
     
     TagTextAttachment *attachment = [[TagTextAttachment alloc] init];
     
@@ -326,21 +320,21 @@
     [attachment setImage:tagImage];
     
     // Set tag name
-    [attachment setTagID:item.ID];
+    [attachment setTagID:item.objectID];
     
     NSAttributedString *tag = [NSAttributedString attributedStringWithAttachment:attachment];
     
     [self.textView.textStorage insertAttributedString:tag atIndex:self.textView.selectedRange.location];
 }
 
-- (void)redrawTag:(NSString *)ID {
+- (void)redrawTag:(NSManagedObjectID *)ID {
     NSUInteger __block tagIndex = 0;
     [self.textView.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textView.textStorage.length) options:0 usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
         if (value == nil) return;
         
         TagTextAttachment *attachment = (TagTextAttachment *) value;
         
-        if ([attachment.tagID isEqualToString:ID]) {
+        if (attachment.tagID == ID) {
             tagIndex = range.location;
             *stop = YES;
         }
@@ -351,8 +345,7 @@
     [self.textView delete:nil];
     
     // Fetch new tag
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ID == %@", ID];
-    Tag *newTag = [self.appDelegate.possibleTags filteredArrayUsingPredicate:predicate].firstObject;
+    Tag *newTag = [self.context objectWithID:ID];
     
     // Move cursor into place
     [self.textView setSelectedRange:NSMakeRange(tagIndex, 0)];

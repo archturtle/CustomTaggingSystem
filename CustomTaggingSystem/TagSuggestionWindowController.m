@@ -6,7 +6,7 @@
 //
 
 #import "TagSuggestionWindowController.h"
-#import "Tag.h"
+#import "AppDelegate.h"
 
 @interface TagSuggestionWindowController ()
 
@@ -30,6 +30,8 @@
 - (void)windowDidLoad {
     [super windowDidLoad];
     
+    self.context = ((AppDelegate *) NSApplication.sharedApplication.delegate).persistentContainer.viewContext;
+    
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
 }
@@ -48,6 +50,8 @@
     [self.arrayController setContent:suggestions];
     [self.tableView reloadData];
     
+//    [self.tableView reloadData];
+    
     NSWindow *suggestionsWindow = self.window;
     NSWindow *textViewWindow = textView.window;
     NSRect textViewRect = [textView convertRect:textView.bounds toView:nil];
@@ -59,9 +63,9 @@
     suggestionsWindowFrame.size.width = textView.frame.size.width;
     [suggestionsWindow setFrame:suggestionsWindowFrame display:false];
     [self calculateProperHeight];
-        
+
     [textViewWindow addChildWindow:suggestionsWindow ordered:NSWindowAbove];
-        
+    
     self.focusObserver = [NSNotificationCenter.defaultCenter addObserverForName:NSWindowDidResignKeyNotification object:textViewWindow queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         [self cancelSuggestions];
     }];
@@ -73,7 +77,7 @@
     frame.size.height = 0.0f;
     frame.size.width = contentFrame.size.width;
     frame.origin = NSMakePoint(0, 0);
-    frame.origin.y = 20.0f + ((self.tableView.numberOfRows < 9) ? self.tableView.rowHeight * self.tableView.numberOfRows : 160.0f);
+    frame.origin.y = 20.0f + ((self.tableView.numberOfRows < 8) ? self.tableView.rowHeight * self.tableView.numberOfRows : 160.0f);
     
     contentFrame.size.height = NSMaxY(frame);
 
@@ -99,7 +103,7 @@
 }
 
 - (void)moveSelectionDown {
-    int nextRow = MIN((int) self.tableView.selectedRow + 1, (int) [self.arrayController.arrangedObjects count] - 1);
+    int nextRow = MIN((int) self.tableView.selectedRow + 1, (int) [(NSArray *) self.arrayController.arrangedObjects count] - 1);
     [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:nextRow] byExtendingSelection:NO];
     [self.tableView scrollRowToVisible:nextRow];
 }

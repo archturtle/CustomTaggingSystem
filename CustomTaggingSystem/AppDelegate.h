@@ -6,15 +6,21 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "Tag.h"
+#import <CoreData/CoreData.h>
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 /**
- The list of possible tags that can be shown inside the suggestions
- window.
+ The container that lets us use CoreData in our app.
  */
-@property NSMutableArray<Tag *> * possibleTags;
+@property (readonly, strong) NSPersistentContainer *persistentContainer;
+
+/**
+ The function that is used to write changes to CoreData.
+ 
+ @param sender The view that is sending the action.
+ */
+- (IBAction)saveAction:(id)sender;
 
 @end
 

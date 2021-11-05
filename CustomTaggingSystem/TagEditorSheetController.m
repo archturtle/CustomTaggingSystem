@@ -6,6 +6,7 @@
 //
 
 #import "TagEditorSheetController.h"
+#import "Tag+CoreDataClass.h"
 #import "AppDelegate.h"
 
 @interface TagEditorSheetController ()
@@ -20,19 +21,19 @@
 @implementation TagEditorSheetController
 
 - (void)windowDidLoad {
-    self.appDelegate = (AppDelegate *) [[NSApplication sharedApplication] delegate];
+    self.appDelegate = NSApplication.sharedApplication.delegate;
     
     [self.nameTextField setStringValue:self.tag.name];
     [self.colorWell setColor:self.tag.color];
 }
 
 - (IBAction)editButtonClicked:(id)sender {
-    // Get the index and edit the tag.
-    NSUInteger originalTagIndex = [self.appDelegate.possibleTags indexOfObject:self.tag];
-    [self.tag editName:[NSString stringWithFormat:@"%@", self.nameTextField.stringValue] andColor:self.colorWell.color];
-
+    // Edit the tag.
+    self.tag.name = [NSString stringWithFormat:@"%@", self.nameTextField.stringValue];
+    self.tag.color = self.colorWell.color;
+    
     // Update the tag.
-    [self.appDelegate.possibleTags replaceObjectAtIndex:originalTagIndex withObject:self.tag];
+    [self.appDelegate saveAction:nil];
     
     // Close panel and send the ok
     [[NSColorPanel sharedColorPanel] close];

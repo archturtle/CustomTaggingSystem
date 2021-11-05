@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TagTextView : NSTextView <NSSharingServicePickerDelegate>
 
+/**
+ The delegate that the view calls when using delegate methods.
+ */
 @property (nullable, weak) id<TagTextViewDelegate> delegate;
 
 @end

@@ -8,10 +8,20 @@
 #import "AppDelegate.h"
 #import "TagTextView.h"
 #import "TagTextAttachment.h"
-#import "Tag.h"
 #import "TagEditorSheetController.h"
+#import "Tag+CoreDataClass.h"
 
 @interface TagTextView ()
+
+/**
+ The shared delegate for the entire application.
+ */
+@property AppDelegate * appDelegate;
+
+/**
+ The object context used to managed Tags.
+ */
+@property NSManagedObjectContext * context;
 
 /**
  The editor window that is used to edit the data of a selected
@@ -27,6 +37,9 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
+    
+    self.appDelegate = NSApplication.sharedApplication.delegate;
+    self.context = self.appDelegate.persistentContainer.viewContext;
     
     self.editorSheet = [[TagEditorSheetController alloc] initWithWindowNibName:@"TagEditorSheet"];
 }
@@ -58,15 +71,14 @@
         NSUInteger charIndex = [self.layoutManager characterIndexForGlyphAtIndex:glyphIndex];
         TagTextAttachment *attachment = [self.textStorage attribute:NSAttachmentAttributeName atIndex:charIndex effectiveRange:nil];
         
-        NSPredicate *filter = [NSPredicate predicateWithFormat:@"ID == %@", attachment.tagID];
-        Tag *tag = [((AppDelegate *) NSApplication.sharedApplication.delegate).possibleTags filteredArrayUsingPredicate:filter].firstObject;
-        
-        // Set data of editorySheet.
+        // Get the tag.
+        Tag *tag = [self.context objectWithID:attachment.tagID];
+        // Set data of editorSheet.
         [self.editorSheet setTag:tag];
         
         // Show sheet.
         [self.window beginSheet:self.editorSheet.window completionHandler:^(NSModalResponse returnCode) {
-            if (returnCode == NSModalResponseOK) [self.delegate tagInformationEdited:tag.ID];
+            if (returnCode == NSModalResponseOK) [self.delegate tagInformationEdited:tag.objectID];
         }];
     }
 }

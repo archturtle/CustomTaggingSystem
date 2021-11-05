@@ -7,7 +7,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MainViewController.h"
-#import "Tag.h"
+#import "Tag+CoreDataClass.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,6 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
  suggestions.
  */
 @property (strong) IBOutlet NSArrayController *arrayController;
+
+/**
+ The object context used to managed Tags.
+ */
+@property NSManagedObjectContext * context;
 
 /**
  The target that the window should notify when the selection of the

@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param ID The ID of the tag that was edited.
  */
-- (void)tagInformationEdited:(NSString *)ID;
+- (void)tagInformationEdited:(NSManagedObjectID *)ID;
 
 @end
 

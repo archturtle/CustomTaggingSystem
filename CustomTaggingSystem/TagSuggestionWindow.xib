@@ -87,7 +87,7 @@
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="Dbb-26-evl" name="value" keyPath="objectValue.items" id="B1E-FD-Z2Z">
+                                                                <binding destination="Dbb-26-evl" name="value" keyPath="objectValue.count" id="mMb-zy-XZ9">
                                                                     <dictionary key="options">
                                                                         <string key="NSValueTransformerName">ItemsValueTransformer</string>
                                                                     </dictionary>
@@ -139,7 +139,7 @@
             </connections>
             <point key="canvasLocation" x="113" y="144"/>
         </window>
-        <arrayController objectClassName="Tag" id="Ghw-gT-ed7">
+        <arrayController objectClassName="Tag" editable="NO" id="Ghw-gT-ed7">
             <classReference key="objectClass" className="Tag"/>
         </arrayController>
     </objects>

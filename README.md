@@ -15,6 +15,7 @@ The tags are created using a `NSImage` that is created programatically and are s
 - Restoring tags from a plist file
 - Right click menu on tags for live-editing
 - Live-updating after a tag has been edited.
+- Automatic text color switching if tag background is too light/dark
 
 ## Todo
 - None

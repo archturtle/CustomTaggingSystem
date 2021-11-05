@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The iD of the tag that the text attachment is representing.
  */
-@property NSString * tagID;
+@property NSManagedObjectID * tagID;
 
 @end
 

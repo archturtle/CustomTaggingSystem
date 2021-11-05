@@ -6,7 +6,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "Tag.h"
+#import "Tag+CoreDataClass.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
