@@ -1,4 +1,4 @@
-# Custom Tagging System
+# Custom Tagging System (CoreData Version)
 ![CustomTaggingSystem Demo](https://user-images.githubusercontent.com/31663833/139622903-08db27f4-01aa-45fa-99ad-45dd8976a8eb.mp4)
 This project attempts to recreate the tagging system that is found in the MacOS Finder app. 
 
@@ -11,8 +11,7 @@ The tags are created using a `NSImage` that is created programatically and are s
 - Keyboard navigation of suggestions
 - Auto-creation if a tag does not exist
 - Auto-creation & auto-cancellation is focus is lost
-- Saving tags to a plist file
-- Restoring tags from a plist file
+- Saving tags to CoreData
 - Right click menu on tags for live-editing
 - Live-updating after a tag has been edited.
 - Automatic text color switching if tag background is too light/dark
