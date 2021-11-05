@@ -6,14 +6,15 @@ This project attempts to recreate the tagging system that is found in the MacOS 
 The tags are created using a `NSImage` that is created programatically and are sized to the reciving text views font size. Once created, the `NSImage` are placed inside a custom `NSTextAttachment` (called `TagTextAttachment`) which contains the extra property `name`. The extra property `name` is added to help filter the list of possible suggestions to prevent duplicates and to help maintain a list of current tags. Once the `TagTextAttachment` is created, it is then placed inside a `NSAttributedString` for insertion into the text view. In the project, we are using a custom `NSTextView` (called `TagTextView`) for the sole purpose of capturing right-click events. Any text view/field that supports `NSAttributedString` can take advantage of these custom tags.
 
 ## Features
+- Uses CoreData to persistantly save tag information
 - Custom suggestion menu
 - Live replacement of suggestions
 - Keyboard navigation of suggestions
 - Auto-creation if a tag does not exist
 - Auto-creation & auto-cancellation is focus is lost
-- Saving tags to CoreData
+- Saving and restoring current tags from plist
 - Right click menu on tags for live-editing
-- Live-updating after a tag has been edited.
+- Live-updating after a tag has been edited
 - Automatic text color switching if tag background is too light/dark
 
 ## Todo
