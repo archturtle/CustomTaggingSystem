@@ -14,7 +14,7 @@ The tags are created using a `NSImage` that is created programatically and are s
 - Saving tags to a plist file
 - Restoring tags from a plist file
 - Right click menu on tags for live-editing
-- Live-updating after a tag has been edited.
+- Live-updating after a tag has been edited
 
 ## Todo
 - None
