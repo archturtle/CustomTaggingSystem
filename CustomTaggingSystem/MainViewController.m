@@ -54,6 +54,17 @@
 @property bool shouldAutomaticallyCreate;
 
 /**
+ Filters through all created tags to find those that start with the string
+ text. This function also makes sure to only return tags that do not currently
+ exist in text view.
+ 
+ @param text The text to check if name starts with.
+ 
+ @return The list possible suggestions.
+ */
+- (NSArray<Tag *>*)getPossibleSuggestions:(NSString *)text;
+
+/**
  Toggles the shouldCreate property based on the value of the suppression
  button in the NSAlert.
  */
