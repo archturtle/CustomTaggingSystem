@@ -8,8 +8,8 @@
 #import "AppDelegate.h"
 #import "Tag.h"
 
-NSString * const CTSAutomaticallyCreateTags = @"AutomaticallyCreateTags";
-NSString * const CTSLoadTagsOnLaunch = @"LoadTagsOnLaunch";
+NSString * const CTSAutomaticallyCreateTags = @"CTSDefault-AutomaticallyCreateTags";
+NSString * const CTSLoadTagsOnLaunch = @"CTSDefault-LoadTagsOnLaunch";
 
 @implementation AppDelegate
 
