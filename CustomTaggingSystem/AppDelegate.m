@@ -8,9 +8,9 @@
 #import "AppDelegate.h"
 #import "Tag+CoreDataClass.h"
 
-NSString * const CTSFirstLaunch = @"FirstLaunchCompleted";
-NSString * const CTSAutomaticallyCreateTags = @"AutomaticallyCreateTags";
-NSString * const CTSLoadTagsOnLaunch = @"LoadTagsOnLaunch";
+NSString * const CTSFirstLaunch = @"CTSCoreData-FirstLaunchCompleted";
+NSString * const CTSAutomaticallyCreateTags = @"CTSCoreData-AutomaticallyCreateTags";
+NSString * const CTSLoadTagsOnLaunch = @"CTSCoreData-LoadTagsOnLaunch";
 
 @interface AppDelegate ()
 
