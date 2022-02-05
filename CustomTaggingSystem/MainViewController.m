@@ -133,7 +133,7 @@
     unichar character = 0xFFFC;
     self.attachmentCharacter = [NSString stringWithCharacters:&character length:1];
     
-    self.saveFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"Tags.plist"];
+    self.saveFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"CTSDefault-Tags.plist"];
     [self.loadSelector setState:[self.userDefaults boolForKey:CTSLoadTagsOnLaunch]];
     
     if ([self.userDefaults boolForKey:CTSLoadTagsOnLaunch]) [self loadTags:nil];
