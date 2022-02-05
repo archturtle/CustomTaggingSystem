@@ -8,6 +8,10 @@
 #import "AppDelegate.h"
 #import "Tag+CoreDataClass.h"
 
+NSString * const CTSFirstLaunch = @"FirstLaunchCompleted";
+NSString * const CTSAutomaticallyCreateTags = @"AutomaticallyCreateTags";
+NSString * const CTSLoadTagsOnLaunch = @"LoadTagsOnLaunch";
+
 @interface AppDelegate ()
 
 /**
@@ -24,7 +28,7 @@
 
 #pragma mark Delegate Methods
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"FirstLaunchCompleted"]) {
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:CTSFirstLaunch]) {
         [self createTagsWithData:@[
             @{ @"name": @"extract", @"color": NSColor.systemRedColor },
             @{ @"name": @"electron", @"color": NSColor.systemBlueColor },
@@ -48,7 +52,9 @@
             @{ @"name": @"reception", @"color": NSColor.systemPurpleColor },
         ]];
         
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstLaunchCompleted"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:CTSFirstLaunch];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:CTSAutomaticallyCreateTags];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:CTSLoadTagsOnLaunch];
     }
 }
 

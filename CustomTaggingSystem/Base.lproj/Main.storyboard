@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -737,7 +737,10 @@
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="U2U-jf-6e6">
-                                <rect key="frame" x="166" y="170" width="149" height="32"/>
+                                <rect key="frame" x="165" y="213" width="150" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="136" id="a7o-QO-4zK"/>
+                                </constraints>
                                 <buttonCell key="cell" type="push" title="Print Current Tags" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="92g-Q2-RfT">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -766,22 +769,38 @@
                                     <action selector="loadTags:" target="XfG-lQ-9wD" id="P1S-Hi-ed8"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Uo-qL-yiM">
+                                <rect key="frame" x="143" y="175" width="192" height="18"/>
+                                <buttonCell key="cell" type="check" title="Load saved tags on startup" bezelStyle="regularSquare" imagePosition="left" inset="2" id="2L9-S1-g7G">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="loadSelectorChanged:" target="XfG-lQ-9wD" id="yih-il-IMj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="5Uo-qL-yiM" firstAttribute="top" secondItem="U2U-jf-6e6" secondAttribute="bottom" constant="28" id="0yb-i4-mkQ"/>
                             <constraint firstAttribute="bottom" secondItem="fZe-wp-JsT" secondAttribute="bottom" constant="35" id="8Ej-nn-k8b"/>
+                            <constraint firstItem="fZe-wp-JsT" firstAttribute="top" secondItem="hbf-Cb-S7k" secondAttribute="bottom" constant="73" id="BmO-NI-mp5"/>
                             <constraint firstAttribute="trailing" secondItem="hbf-Cb-S7k" secondAttribute="trailing" constant="70" id="HHv-x5-xmc"/>
                             <constraint firstItem="20Z-rQ-Pv9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="70" id="HQl-ye-q3P"/>
-                            <constraint firstItem="U2U-jf-6e6" firstAttribute="top" secondItem="hbf-Cb-S7k" secondAttribute="top" constant="43" id="M0W-xL-mvq"/>
+                            <constraint firstItem="fZe-wp-JsT" firstAttribute="top" secondItem="20Z-rQ-Pv9" secondAttribute="bottom" constant="73" id="IrT-4E-3cS"/>
+                            <constraint firstItem="U2U-jf-6e6" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="30" id="JgB-RR-kdK"/>
                             <constraint firstItem="20Z-rQ-Pv9" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="30" id="Q7g-ha-6OR"/>
+                            <constraint firstItem="5Uo-qL-yiM" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="145" id="RsJ-7b-dEB"/>
                             <constraint firstItem="fZe-wp-JsT" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="70" id="THa-7t-boX"/>
-                            <constraint firstItem="U2U-jf-6e6" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="173" id="WSh-8k-7RM"/>
-                            <constraint firstItem="fZe-wp-JsT" firstAttribute="top" secondItem="U2U-jf-6e6" secondAttribute="bottom" constant="30" id="cwF-g8-NW5"/>
+                            <constraint firstItem="fZe-wp-JsT" firstAttribute="top" secondItem="5Uo-qL-yiM" secondAttribute="bottom" constant="29" id="cH0-6f-Iaz"/>
                             <constraint firstItem="hbf-Cb-S7k" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="30" id="dqR-T8-XYe"/>
                             <constraint firstAttribute="trailing" secondItem="fZe-wp-JsT" secondAttribute="trailing" constant="70" id="kP3-wC-5zQ"/>
-                            <constraint firstAttribute="trailing" secondItem="U2U-jf-6e6" secondAttribute="trailing" constant="172" id="ozz-VR-crB"/>
+                            <constraint firstItem="hbf-Cb-S7k" firstAttribute="leading" secondItem="U2U-jf-6e6" secondAttribute="trailing" constant="20" id="qQN-66-FJ1"/>
+                            <constraint firstAttribute="trailing" secondItem="5Uo-qL-yiM" secondAttribute="trailing" constant="145" id="ssi-UZ-kR4"/>
+                            <constraint firstItem="U2U-jf-6e6" firstAttribute="leading" secondItem="20Z-rQ-Pv9" secondAttribute="trailing" constant="20" id="t90-9g-BMq"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loadSelector" destination="5Uo-qL-yiM" id="qTr-dB-8iy"/>
                         <outlet property="textView" destination="LzM-Nd-Y08" id="Va0-bW-RfG"/>
                     </connections>
                 </viewController>

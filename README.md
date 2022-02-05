@@ -13,6 +13,7 @@ The tags are created using a `NSImage` that is created programatically and are s
 - Auto-creation if a tag does not exist
 - Auto-creation & auto-cancellation is focus is lost
 - Saving and restoring current tags from plist
+- Option to load tags on startup
 - Right click menu on tags for live-editing
 - Live-updating after a tag has been edited
 - Automatic text color switching if tag background is too light/dark

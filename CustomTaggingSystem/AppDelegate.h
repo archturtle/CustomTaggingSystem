@@ -8,6 +8,24 @@
 #import <Cocoa/Cocoa.h>
 #import <CoreData/CoreData.h>
 
+/**
+ The NSUserDefaults key used to see if the app is launching for
+ the first time.
+ */
+extern NSString * const CTSFirstLaunch;
+
+/**
+ The NSUserDefaults key used to see if tags should be automatically
+ created.
+ */
+extern NSString * const CTSAutomaticallyCreateTags;
+
+/**
+ The NSUserDefaults key used to see if tags should be loaded on
+ launch.
+ */
+extern NSString * const CTSLoadTagsOnLaunch;
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 /**

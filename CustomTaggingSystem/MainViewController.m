@@ -25,6 +25,12 @@
 @property NSManagedObjectContext * context;
 
 /**
+ The NSUserDefaults instance used for reading/writing user
+ configuration.
+ */
+@property NSUserDefaults * userDefaults;
+
+/**
  The list of tags that are currently inside the textView. Updates on
  insertion and deletion of tags.
  */
@@ -52,12 +58,6 @@
  The path at which the save file for tags is located.
  */
 @property NSString * saveFilePath;
-
-/**
- The boolean used to determine if a tag should be automatically created
- if it doesn't exist.
- */
-@property bool shouldAutomaticallyCreate;
 
 /**
  Filters through all created tags to find those that start with the string
@@ -131,6 +131,7 @@
     
     self.appDelegate = NSApplication.sharedApplication.delegate;
     self.context = self.appDelegate.persistentContainer.viewContext;
+    self.userDefaults = NSUserDefaults.standardUserDefaults;
     
     [self.textView setDelegate:self];
     [self.textView setTextContainerInset:NSMakeSize(0, 5)];
@@ -140,9 +141,9 @@
     self.attachmentCharacter = [NSString stringWithCharacters:&character length:1];
     
     self.saveFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"Tags.plist"];
+    [self.loadSelector setState:[self.userDefaults boolForKey:CTSLoadTagsOnLaunch]];
     
-    // Uncomment Load saved tags on app startup.
-//    [self loadTags:nil];
+    if ([self.userDefaults boolForKey:CTSLoadTagsOnLaunch]) [self loadTags:nil];
 }
 
 @synthesize currentTags = _currentTags;
@@ -192,12 +193,16 @@
     for (NSString *ID in saveFileData[@"Tags"]) {
         NSURL *uriID = [NSURL URLWithString:ID];
         NSManagedObjectID *managedID = [self.context.persistentStoreCoordinator managedObjectIDForURIRepresentation:uriID];
+        if (!managedID) return;
         
         Tag *tag = [self.context objectWithID:managedID];
-        if (!tag) return;
         
         [self insertTag:tag];
     }
+}
+
+- (IBAction)loadSelectorChanged:(id)sender {
+    [self.userDefaults setBool:self.loadSelector.state forKey:CTSLoadTagsOnLaunch];
 }
 
 - (void)textDidBeginEditing:(NSNotification *)notification {
@@ -278,7 +283,7 @@
         NSArray<Tag *>* results = [self.context executeFetchRequest:request error:nil];
         
         if (results.count == 0) {
-            if (!self.shouldAutomaticallyCreate) {
+            if (![self.userDefaults boolForKey:CTSAutomaticallyCreateTags]) {
                 NSAlert *shouldCreate = [[NSAlert alloc] init];
                 
                 [shouldCreate setMessageText:[NSString stringWithFormat:@"The tag \"%@\" does not exist. Do you want to create it?", textViewString]];
@@ -451,7 +456,8 @@
 }
 
 - (void)toggleShouldCreate {
-    self.shouldAutomaticallyCreate = !self.shouldAutomaticallyCreate;
+    bool currentValue = [self.userDefaults boolForKey:CTSAutomaticallyCreateTags];
+    [self.userDefaults setBool:!currentValue forKey:CTSAutomaticallyCreateTags];
 }
 
 - (void)mouseDown:(NSEvent *)event {
