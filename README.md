@@ -13,6 +13,8 @@ The tags are created using a `NSImage` that is created programatically and are s
 - Auto-creation & auto-cancellation is focus is lost
 - Saving tags to a plist file
 - Restoring tags from a plist file
+- Option to load tags on startup
+  - This feature only works for default tags. If you want restoration is required for default and user-created tags, see the [coredata](https://github.com/archturtle/CustomTaggingSystem/tree/coredata) branch.
 - Right click menu on tags for live-editing
 - Live-updating after a tag has been edited
 

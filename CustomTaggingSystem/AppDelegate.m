@@ -8,9 +8,8 @@
 #import "AppDelegate.h"
 #import "Tag.h"
 
-@interface AppDelegate ()
-
-@end
+NSString * const CTSAutomaticallyCreateTags = @"AutomaticallyCreateTags";
+NSString * const CTSLoadTagsOnLaunch = @"LoadTagsOnLaunch";
 
 @implementation AppDelegate
 
@@ -37,6 +36,9 @@
         [[Tag alloc] initWithName:@"circumstance" andColor:NSColor.systemPinkColor],
         [[Tag alloc] initWithName:@"reception" andColor:NSColor.systemPurpleColor],
     ]];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:CTSAutomaticallyCreateTags];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:CTSLoadTagsOnLaunch];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {

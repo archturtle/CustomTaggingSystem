@@ -8,6 +8,18 @@
 #import <Cocoa/Cocoa.h>
 #import "Tag.h"
 
+/**
+ The NSUserDefaults key used to see if tags should be automatically
+ created.
+ */
+extern NSString * const CTSAutomaticallyCreateTags;
+
+/**
+ The NSUserDefaults key used to see if tags should be loaded on
+ launch.
+ */
+extern NSString * const CTSLoadTagsOnLaunch;
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 /**

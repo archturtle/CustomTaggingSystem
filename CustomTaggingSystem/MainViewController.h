@@ -18,6 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (unsafe_unretained) IBOutlet TagTextView *textView;
 
+/**
+ The binding to the checkbox that is used to determine if tags should
+ be loaded on startup.
+ */
+@property (weak) IBOutlet NSButton *loadSelector;
+
 @end
 
 NS_ASSUME_NONNULL_END
