@@ -207,7 +207,7 @@
 
 - (void)textDidBeginEditing:(NSNotification *)notification {
     if (!self.suggestionWindow) {
-        self.suggestionWindow = [[TagSuggestionWindowController alloc] initWithWindowNibName:@"TagSuggestionWindow"];
+        self.suggestionWindow = [[TagSuggestionWindowController alloc] init];
         self.suggestionWindow.target = self;
         self.suggestionWindow.action = @selector(updateTextView);
     }

@@ -7,8 +7,12 @@
 
 #import "TagSuggestionWindowController.h"
 #import "AppDelegate.h"
+#import "TagSuggestionWindow.h"
+#import "TagSuggestionView.h"
 
 @interface TagSuggestionWindowController ()
+
+@property (nonatomic) TagSuggestionView * contentView;
 
 /**
  The focus observer which notifies the window that the user
@@ -27,29 +31,45 @@
 
 @implementation TagSuggestionWindowController
 
-- (void)windowDidLoad {
-    [super windowDidLoad];
+- (instancetype)init
+{
+    NSRect contentRec = {{0,0}, {20, 20}};
+    NSWindow *window = [[TagSuggestionWindow alloc] initWithContentRect:contentRec styleMask:NSWindowStyleMaskBorderless backing:NSBackingStoreBuffered defer:YES];
     
-    self.context = ((AppDelegate *) NSApplication.sharedApplication.delegate).persistentContainer.viewContext;
-    
-    [self.tableView setDelegate:self];
-    [self.tableView setDataSource:self];
-}
+    self = [super initWithWindow:window];
+    if (self) {
+        NSArray *tla = nil;
+        [[NSBundle mainBundle] loadNibNamed:@"TagSuggestionView" owner:window topLevelObjects:&tla];
+        
+        TagSuggestionView *view = [tla filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+            return [evaluatedObject isKindOfClass:[TagSuggestionView class]];
+        }]].firstObject;
+        view.tableView.backgroundColor = NSColor.clearColor;
 
+        window.contentView = view;
+    }
+    return self;
+}
 
 @synthesize selectedSuggestion = _selectedSuggestion;
 
 - (NSDictionary *)selectedSuggestion {
-    NSInteger currentRow = self.tableView.selectedRow;
-    return currentRow == -1 ? nil : [self.arrayController.arrangedObjects objectAtIndex:currentRow];
+    NSInteger currentRow = self.contentView.tableView.selectedRow;
+    return currentRow == -1 ? nil : [self.contentView.arrayController.arrangedObjects objectAtIndex:currentRow];
+}
+
+@synthesize contentView = _contentView;
+
+- (TagSuggestionView *)contentView {
+    return (TagSuggestionView *) self.window.contentView;
 }
 
 - (void)showSuggestions:(NSArray<Tag *> *)suggestions forView:(NSTextView *)textView {
     if (suggestions.count == 0) return [self cancelSuggestions];
     
-    [self.arrayController setContent:suggestions];
-    [self.tableView reloadData];
-    
+    [self.contentView.arrayController setContent:suggestions];
+    [self.contentView.tableView reloadData];
+
     NSWindow *suggestionsWindow = self.window;
     NSWindow *textViewWindow = textView.window;
     NSRect textViewRect = [textView convertRect:textView.bounds toView:nil];
@@ -75,8 +95,10 @@
     frame.size.height = 0.0f;
     frame.size.width = contentFrame.size.width;
     frame.origin = NSMakePoint(0, 0);
-    frame.origin.y = 20.0f + ((self.tableView.numberOfRows < 8) ? self.tableView.rowHeight * self.tableView.numberOfRows : 160.0f);
-    
+    frame.origin.y = 20.0f + ((self.contentView.tableView.numberOfRows < 8) ?
+                              self.contentView.tableView.rowHeight * self.contentView.tableView.numberOfRows :
+                              160.0f);
+
     contentFrame.size.height = NSMaxY(frame);
 
     NSRect windowFrame = self.window.frame;
@@ -86,7 +108,8 @@
 }
 
 - (void)cancelSuggestions {
-    [self.tableView deselectAll:nil];
+//    [self.tableView deselectAll:nil];
+    [self.contentView.tableView deselectAll:nil];
     [NSNotificationCenter.defaultCenter removeObserver:self.focusObserver];
     [self.window.parentWindow removeChildWindow:self.window];
     [self.window orderOut:nil];
@@ -95,15 +118,15 @@
 #pragma mark - Table View Controls
 
 - (void)moveSelectionUp {
-    int nextRow = MAX((int) self.tableView.selectedRow - 1, 0);
-    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:nextRow] byExtendingSelection:NO];
-    [self.tableView scrollRowToVisible:nextRow];
+    int nextRow = MAX((int) self.contentView.tableView.selectedRow - 1, 0);
+    [self.contentView.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:nextRow] byExtendingSelection:NO];
+    [self.contentView.tableView scrollRowToVisible:nextRow];
 }
 
 - (void)moveSelectionDown {
-    int nextRow = MIN((int) self.tableView.selectedRow + 1, (int) [(NSArray *) self.arrayController.arrangedObjects count] - 1);
-    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:nextRow] byExtendingSelection:NO];
-    [self.tableView scrollRowToVisible:nextRow];
+    int nextRow = MIN((int) self.contentView.tableView.selectedRow + 1, (int) [(NSArray *) self.contentView.arrayController.arrangedObjects count] - 1);
+    [self.contentView.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:nextRow] byExtendingSelection:NO];
+    [self.contentView.tableView scrollRowToVisible:nextRow];
 }
 
 #pragma mark - Table View Data
