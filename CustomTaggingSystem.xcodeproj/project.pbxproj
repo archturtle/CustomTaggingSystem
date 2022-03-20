@@ -23,7 +23,6 @@
 		67AD921226F2942000EACDBE /* TagTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD921126F2942000EACDBE /* TagTextAttachment.m */; };
 		67AD921526F2944400EACDBE /* ItemsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD921426F2944400EACDBE /* ItemsValueTransformer.m */; };
 		67AD921926F2947100EACDBE /* TagSuggestionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD921726F2947100EACDBE /* TagSuggestionWindowController.m */; };
-		67AD921A26F2947100EACDBE /* TagSuggestionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67AD921826F2947100EACDBE /* TagSuggestionWindow.xib */; };
 		67F42EBF2732DBC4002238D7 /* CustomTaggingSystem.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 67F42EBD2732DBC4002238D7 /* CustomTaggingSystem.xcdatamodeld */; };
 		67F42EC22732DC34002238D7 /* CoreDataColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F42EC12732DC34002238D7 /* CoreDataColorTransformer.m */; };
 		67F541A52723AD4A00810C77 /* ColorValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F541A42723AD4A00810C77 /* ColorValueTransformer.m */; };
@@ -64,7 +63,6 @@
 		67AD921426F2944400EACDBE /* ItemsValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemsValueTransformer.m; sourceTree = "<group>"; };
 		67AD921626F2947100EACDBE /* TagSuggestionWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagSuggestionWindowController.h; sourceTree = "<group>"; };
 		67AD921726F2947100EACDBE /* TagSuggestionWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagSuggestionWindowController.m; sourceTree = "<group>"; };
-		67AD921826F2947100EACDBE /* TagSuggestionWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagSuggestionWindow.xib; sourceTree = "<group>"; };
 		67F42EBE2732DBC4002238D7 /* CustomTaggingSystem.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CustomTaggingSystem.xcdatamodel; sourceTree = "<group>"; };
 		67F42EC02732DC34002238D7 /* CoreDataColorTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataColorTransformer.h; sourceTree = "<group>"; };
 		67F42EC12732DC34002238D7 /* CoreDataColorTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataColorTransformer.m; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 				6757760827E6DDDD00407E60 /* RoundedTableView.h */,
 				6757760927E6DDDD00407E60 /* RoundedTableView.m */,
 				6757760627E6CEB100407E60 /* TagSuggestionView.xib */,
-				67AD921826F2947100EACDBE /* TagSuggestionWindow.xib */,
 				67184817272A00C5008ED849 /* TagEditorSheetController.h */,
 				67184818272A00C5008ED849 /* TagEditorSheetController.m */,
 				67184819272A00C5008ED849 /* TagEditorSheet.xib */,
@@ -203,7 +200,6 @@
 			files = (
 				67AD91FF26F2930800EACDBE /* Assets.xcassets in Resources */,
 				6718481B272A00C5008ED849 /* TagEditorSheet.xib in Resources */,
-				67AD921A26F2947100EACDBE /* TagSuggestionWindow.xib in Resources */,
 				6757760727E6CEB100407E60 /* TagSuggestionView.xib in Resources */,
 				67AD920226F2930800EACDBE /* Main.storyboard in Resources */,
 			);
