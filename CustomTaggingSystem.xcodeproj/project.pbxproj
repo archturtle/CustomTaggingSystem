@@ -10,6 +10,10 @@
 		6718481A272A00C5008ED849 /* TagEditorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67184818272A00C5008ED849 /* TagEditorSheetController.m */; };
 		6718481B272A00C5008ED849 /* TagEditorSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67184819272A00C5008ED849 /* TagEditorSheet.xib */; };
 		67200BAC26FCE4DC00D2F1E7 /* TagTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 67200BAB26FCE4DC00D2F1E7 /* TagTextView.m */; };
+		675775F927E6C8E000407E60 /* TagSuggestionWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775F827E6C8E000407E60 /* TagSuggestionWindow.m */; };
+		675775FC27E6C99300407E60 /* TagSuggestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 675775FB27E6C99300407E60 /* TagSuggestionView.m */; };
+		6757760727E6CEB100407E60 /* TagSuggestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6757760627E6CEB100407E60 /* TagSuggestionView.xib */; };
+		6757760A27E6DDDD00407E60 /* RoundedTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6757760927E6DDDD00407E60 /* RoundedTableView.m */; };
 		67AD91FA26F2930700EACDBE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD91F926F2930700EACDBE /* AppDelegate.m */; };
 		67AD91FD26F2930700EACDBE /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67AD91FC26F2930700EACDBE /* MainViewController.m */; };
 		67AD91FF26F2930800EACDBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67AD91FE26F2930800EACDBE /* Assets.xcassets */; };
@@ -35,6 +39,13 @@
 		674587FA27026BF400B15B7D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		674587FB27026BF400B15B7D /* doc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = doc; sourceTree = "<group>"; };
 		674587FC27026BF400B15B7D /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		675775F727E6C8E000407E60 /* TagSuggestionWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagSuggestionWindow.h; sourceTree = "<group>"; };
+		675775F827E6C8E000407E60 /* TagSuggestionWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagSuggestionWindow.m; sourceTree = "<group>"; };
+		675775FA27E6C99300407E60 /* TagSuggestionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagSuggestionView.h; sourceTree = "<group>"; };
+		675775FB27E6C99300407E60 /* TagSuggestionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagSuggestionView.m; sourceTree = "<group>"; };
+		6757760627E6CEB100407E60 /* TagSuggestionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagSuggestionView.xib; sourceTree = "<group>"; };
+		6757760827E6DDDD00407E60 /* RoundedTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoundedTableView.h; sourceTree = "<group>"; };
+		6757760927E6DDDD00407E60 /* RoundedTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoundedTableView.m; sourceTree = "<group>"; };
 		67AD91F526F2930700EACDBE /* CustomTaggingSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomTaggingSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67AD91F826F2930700EACDBE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		67AD91F926F2930700EACDBE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -105,6 +116,13 @@
 				67AD920026F2930800EACDBE /* Main.storyboard */,
 				67AD921626F2947100EACDBE /* TagSuggestionWindowController.h */,
 				67AD921726F2947100EACDBE /* TagSuggestionWindowController.m */,
+				675775F727E6C8E000407E60 /* TagSuggestionWindow.h */,
+				675775F827E6C8E000407E60 /* TagSuggestionWindow.m */,
+				675775FA27E6C99300407E60 /* TagSuggestionView.h */,
+				675775FB27E6C99300407E60 /* TagSuggestionView.m */,
+				6757760827E6DDDD00407E60 /* RoundedTableView.h */,
+				6757760927E6DDDD00407E60 /* RoundedTableView.m */,
+				6757760627E6CEB100407E60 /* TagSuggestionView.xib */,
 				67AD921826F2947100EACDBE /* TagSuggestionWindow.xib */,
 				67184817272A00C5008ED849 /* TagEditorSheetController.h */,
 				67184818272A00C5008ED849 /* TagEditorSheetController.m */,
@@ -186,6 +204,7 @@
 				67AD91FF26F2930800EACDBE /* Assets.xcassets in Resources */,
 				6718481B272A00C5008ED849 /* TagEditorSheet.xib in Resources */,
 				67AD921A26F2947100EACDBE /* TagSuggestionWindow.xib in Resources */,
+				6757760727E6CEB100407E60 /* TagSuggestionView.xib in Resources */,
 				67AD920226F2930800EACDBE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,16 +216,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6757760A27E6DDDD00407E60 /* RoundedTableView.m in Sources */,
 				67AD921926F2947100EACDBE /* TagSuggestionWindowController.m in Sources */,
 				67AD91FD26F2930700EACDBE /* MainViewController.m in Sources */,
 				67AD920526F2930800EACDBE /* main.m in Sources */,
 				67F541A52723AD4A00810C77 /* ColorValueTransformer.m in Sources */,
 				67AD91FA26F2930700EACDBE /* AppDelegate.m in Sources */,
 				67F42EC22732DC34002238D7 /* CoreDataColorTransformer.m in Sources */,
+				675775F927E6C8E000407E60 /* TagSuggestionWindow.m in Sources */,
 				6718481A272A00C5008ED849 /* TagEditorSheetController.m in Sources */,
 				67200BAC26FCE4DC00D2F1E7 /* TagTextView.m in Sources */,
 				67AD921226F2942000EACDBE /* TagTextAttachment.m in Sources */,
 				67AD920F26F293EC00EACDBE /* NSString+ComparisonIndex.m in Sources */,
+				675775FC27E6C99300407E60 /* TagSuggestionView.m in Sources */,
 				67F42EBF2732DBC4002238D7 /* CustomTaggingSystem.xcdatamodeld in Sources */,
 				67AD921526F2944400EACDBE /* ItemsValueTransformer.m in Sources */,
 			);
