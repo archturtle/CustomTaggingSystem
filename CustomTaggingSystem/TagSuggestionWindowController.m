@@ -12,6 +12,9 @@
 
 @interface TagSuggestionWindowController ()
 
+/**
+ The current content view of the tag suggestion window.
+ */
 @property (nonatomic) TagSuggestionView * contentView;
 
 /**
@@ -108,7 +111,6 @@
 }
 
 - (void)cancelSuggestions {
-//    [self.tableView deselectAll:nil];
     [self.contentView.tableView deselectAll:nil];
     [NSNotificationCenter.defaultCenter removeObserver:self.focusObserver];
     [self.window.parentWindow removeChildWindow:self.window];
